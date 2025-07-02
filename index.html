@@ -43,18 +43,20 @@
       align-items: center;
       height: 100vh;
       font-size: 4rem;
-      opacity: 1;
-      animation: fadeOutSlide 3s ease-out forwards;
-      animation-delay: 1s;
+      animation: fadeOut 3s ease-out forwards;
     }
 
-    @keyframes fadeOutSlide {
+    @keyframes fadeOut {
       0% {
+        opacity: 1;
+      }
+      80% {
         opacity: 1;
       }
       100% {
         opacity: 0;
-        display: none;
+        visibility: hidden;
+        height: 0;
       }
     }
 
@@ -62,7 +64,18 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 80px 40px 40px; /* padding-top większy by nie schować pod menu */
+      padding: 80px 40px 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideUpMain 1s ease-out forwards;
+      animation-delay: 3s; /* Po zniknięciu napisu Witaj */
+    }
+
+    @keyframes slideUpMain {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .portfolio-item {
@@ -70,6 +83,7 @@
       padding: 10px;
       border-radius: 8px;
       text-align: center;
+      overflow: hidden;
     }
 
     .portfolio-item img {
@@ -87,17 +101,6 @@
       font-size: 0.9rem;
       color: #ccc;
       margin-top: 5px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: slideUpFade 1s ease-out forwards;
-      animation-delay: 4s; /* zaczyna po zniknięciu nagłówka */
-    }
-
-    @keyframes slideUpFade {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   </style>
 </head>
@@ -111,7 +114,7 @@
     <a href="#kontakt">Kontakt</a>
   </nav>
 
-  <header>
+  <header id="header">
     Witaj
   </header>
 
