@@ -146,13 +146,12 @@
   </main>
 
   <script>
-    // Po zakończeniu animacji nagłówka
     const header = document.getElementById('header');
     const portfolio = document.getElementById('portfolio');
 
     header.addEventListener('animationend', () => {
-      header.remove(); // usuń napis Witaj
-      portfolio.classList.add('visible'); // pokaż portfolio z animacją
+      header.remove(); // usuń nagłówek po animacji
+      portfolio.classList.add('visible'); // dodaj klasę, aby pokazać portfolio
     });
   </script>
 
