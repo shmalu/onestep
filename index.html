@@ -56,7 +56,6 @@
       100% {
         opacity: 0;
         visibility: hidden;
-        height: 0;
       }
     }
 
@@ -64,18 +63,15 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 80px 40px 40px;
+      padding: 100px 40px 40px;
       opacity: 0;
       transform: translateY(50px);
-      animation: slideUpMain 1s ease-out forwards;
-      animation-delay: 3s; /* Po zniknięciu napisu Witaj */
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    @keyframes slideUpMain {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    main.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .portfolio-item {
@@ -83,7 +79,6 @@
       padding: 10px;
       border-radius: 8px;
       text-align: center;
-      overflow: hidden;
     }
 
     .portfolio-item img {
@@ -118,7 +113,7 @@
     Witaj
   </header>
 
-  <main>
+  <main id="portfolio">
     <div class="portfolio-item" id="rubryka1">
       <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 1" />
       <div class="price">100 zł</div>
@@ -149,6 +144,17 @@
       <div class="description">kontakt@example.com</div>
     </div>
   </main>
+
+  <script>
+    // Po zakończeniu animacji nagłówka
+    const header = document.getElementById('header');
+    const portfolio = document.getElementById('portfolio');
+
+    header.addEventListener('animationend', () => {
+      header.remove(); // usuń napis Witaj
+      portfolio.classList.add('visible'); // pokaż portfolio z animacją
+    });
+  </script>
 
 </body>
 </html>
