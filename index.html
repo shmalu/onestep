@@ -6,21 +6,17 @@
   <title>Moje Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* --- GLOBAL STYLES --- */
     body {
-      /* gradient “od dołu”: zaczyna się przy dole ekranu (0deg = wektor w górę) */
-      background: linear-gradient(0deg, rgba(0,0,0,1) 77%, rgba(128,128,128,1) 100%);
+      background: linear-gradient(180deg, rgba(128,128,128,1) 0%, rgba(0,0,0,1) 77%);
       color: #fff;
       font-family: 'Raleway', sans-serif;
       margin: 0;
       padding: 0;
     }
 
-    /* --- NAVIGATION --- */
     nav {
       position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
       background: #111;
       padding: 10px 20px;
@@ -41,22 +37,20 @@
       color: #0f0;
     }
 
-    /* --- HEADER / WELCOME --- */
     header {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       font-size: 4rem;
-      animation: fadeOut 0.5s ease-out forwards; /* znika po 0.5 s */
+      animation: fadeOut 0.5s ease-out forwards;
     }
 
     @keyframes fadeOut {
       from { opacity: 1; }
-      to   { opacity: 0; visibility: hidden; }
+      to { opacity: 0; visibility: hidden; }
     }
 
-    /* --- PORTFOLIO GRID --- */
     main {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -113,32 +107,32 @@
 
   <main id="portfolio">
     <div class="portfolio-item" id="rubryka1">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 1">
-      <div class="price">100 zł</div>
-      <div class="description">Opis zdjęcia 1</div>
+      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 1" />
+      <div class="price">100 zł</div>
+      <div class="description">Opis zdjęcia 1</div>
     </div>
 
     <div class="portfolio-item" id="rubryka2">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 2">
-      <div class="price">150 zł</div>
-      <div class="description">Opis zdjęcia 2</div>
+      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 2" />
+      <div class="price">150 zł</div>
+      <div class="description">Opis zdjęcia 2</div>
     </div>
 
     <div class="portfolio-item" id="rubryka3">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 3">
-      <div class="price">200 zł</div>
-      <div class="description">Opis zdjęcia 3</div>
+      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 3" />
+      <div class="price">200 zł</div>
+      <div class="description">Opis zdjęcia 3</div>
     </div>
 
     <div class="portfolio-item" id="rubryka4">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 4">
-      <div class="price">250 zł</div>
-      <div class="description">Opis zdjęcia 4</div>
+      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 4" />
+      <div class="price">250 zł</div>
+      <div class="description">Opis zdjęcia 4</div>
     </div>
 
     <div class="portfolio-item" id="kontakt">
-      <img src="https://via.placeholder.com/300x200" alt="Kontakt">
-      <div class="price">Napisz do mnie</div>
+      <img src="https://via.placeholder.com/300x200" alt="Kontakt" />
+      <div class="price">Napisz do mnie</div>
       <div class="description">kontakt@example.com</div>
     </div>
   </main>
@@ -147,7 +141,6 @@
     const header = document.getElementById('header');
     const portfolio = document.getElementById('portfolio');
 
-    /* Gdy animacja nagłówka się skończy, usuń go i pokaż portfolio */
     header.addEventListener('animationend', () => {
       header.remove();
       portfolio.classList.add('visible');
