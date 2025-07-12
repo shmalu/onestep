@@ -7,8 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet" />
   <style>
     body {
-      background: #000000;
-      background: linear-gradient(0deg,rgba(0, 0, 0, 1) 77%, rgba(255, 255, 255, 1) 100%);
+      background-color: #000;
       color: #fff;
       font-family: 'Raleway', sans-serif;
       margin: 0;
@@ -45,19 +44,13 @@
       height: 100vh;
       font-size: 5rem;
       animation: fadeOut 1s ease-out forwards;
+      background: transparent;
     }
 
     @keyframes fadeOut {
-      0% {
-        opacity: 1;
-      }
-      80% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        visibility: hidden;
-      }
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
     }
 
     main {
@@ -116,31 +109,31 @@
 
   <main id="portfolio">
     <div class="portfolio-item" id="rubryka1">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 1" />
+      <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d" alt="Przykładowe zdjęcie 1" />
       <div class="price">100 zł</div>
       <div class="description">Opis zdjęcia 1</div>
     </div>
 
     <div class="portfolio-item" id="rubryka2">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 2" />
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="Przykładowe zdjęcie 2" />
       <div class="price">150 zł</div>
       <div class="description">Opis zdjęcia 2</div>
     </div>
 
     <div class="portfolio-item" id="rubryka3">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 3" />
+      <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61" alt="Przykładowe zdjęcie 3" />
       <div class="price">200 zł</div>
       <div class="description">Opis zdjęcia 3</div>
     </div>
 
     <div class="portfolio-item" id="rubryka4">
-      <img src="https://via.placeholder.com/300x200" alt="Przykładowe zdjęcie 4" />
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Przykładowe zdjęcie 4" />
       <div class="price">250 zł</div>
       <div class="description">Opis zdjęcia 4</div>
     </div>
 
     <div class="portfolio-item" id="kontakt">
-      <img src="https://via.placeholder.com/300x200" alt="Kontakt" />
+      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1" alt="Kontakt" />
       <div class="price">Napisz do mnie</div>
       <div class="description">kontakt@example.com</div>
     </div>
@@ -151,7 +144,7 @@
     const portfolio = document.getElementById('portfolio');
 
     header.addEventListener('animationend', () => {
-      header.remove();
+      header.remove(); // Usuwa header po zakończeniu animacji
       portfolio.classList.add('visible');
     });
   </script>
