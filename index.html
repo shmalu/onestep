@@ -2,8 +2,8 @@
 <html lang="pl" style="scroll-behavior: smooth;">
 <head>
   <title>OneStep</title>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <link rel="icon" type="image/png" href="logoOS.png" sizes="16x16" />
   <style>
     * {
@@ -12,26 +12,38 @@
       box-sizing: border-box;
     }
 
-    body {
+    body, html {
+      height: 100%;
       font-family: 'Arial', sans-serif;
-      min-height: 100vh;
-      background: linear-gradient(to top, #ffffff, #000000 90%);
-      color: white;
-      overflow-x: hidden;
-      position: relative;
+      overflow: hidden;
     }
 
-    #welcome {
+    /* Ekran powitalny */
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
       font-size: 48px;
       opacity: 1;
-      transition: opacity 0.5s ease-in-out;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
+      transition: opacity 0.5s ease;
     }
 
+    /* Tło strony z gradientem od dołu */
+    body.loaded {
+      background: linear-gradient(to top, white 0%, #111 100%);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Pasek nawigacji */
     .navbar {
       position: fixed;
       top: 0;
@@ -42,6 +54,9 @@
       padding: 20px 0;
       z-index: 1000;
       background: transparent;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: slideUp 0.8s ease forwards;
     }
 
     .nav-item {
@@ -50,15 +65,18 @@
       padding: 10px 20px;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.1);
-      transform: translateY(100px);
-      opacity: 0;
-      animation: slideUp 0.6s ease forwards;
+      transition: background 0.3s ease;
     }
 
-    .nav-item:nth-child(1) { animation-delay: 0.6s; }
-    .nav-item:nth-child(2) { animation-delay: 0.8s; }
-    .nav-item:nth-child(3) { animation-delay: 1s; }
-    .nav-item:nth-child(4) { animation-delay: 1.2s; }
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Opóźnienia animacji pól */
+    .nav-item:nth-child(1) { animation-delay: 0.3s; }
+    .nav-item:nth-child(2) { animation-delay: 0.5s; }
+    .nav-item:nth-child(3) { animation-delay: 0.7s; }
+    .nav-item:nth-child(4) { animation-delay: 0.9s; }
 
     @keyframes slideUp {
       to {
@@ -71,6 +89,10 @@
       margin-top: 120px;
       padding: 40px 20px;
       text-align: center;
+      color: white;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 1s;
     }
 
     .main-content h1 {
@@ -84,45 +106,57 @@
       margin: 0 auto;
     }
 
-    /* Gradient overlay on bottom for effect */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Mniejszy, subtelniejszy gradient przy dolnej krawędzi */
     .bottom-gradient {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       width: 100%;
-      height: 200px;
+      height: 100px;
       background: linear-gradient(to top, white, transparent);
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
     }
   </style>
 </head>
 <body>
 
-  <div id="welcome">Witaj!</div>
+  <!-- Warstwa powitalna -->
+  <div id="welcome-screen">Witaj!</div>
 
-  <div class="navbar" id="mainContent" style="display: none;">
+  <!-- Nawigacja -->
+  <div class="navbar" id="navbar" style="display: none;">
     <div class="nav-item">Kontakt</div>
     <div class="nav-item">Galeria</div>
     <div class="nav-item">Pole1</div>
     <div class="nav-item">Pole2</div>
   </div>
 
-  <div class="main-content">
+  <!-- Główna treść -->
+  <div class="main-content" id="mainContent" style="display: none;">
     <h1>Witamy w OneStep</h1>
-    <p>Dodaj tutaj swoje zdjęcia, teksty, sekcje portfolio, ofertę lub inne treści promujące Twoją firmę marketingową.</p>
+    <p>To przestrzeń na Twoje portfolio, zdjęcia, opisy kampanii i efekty pracy marketingowej.</p>
   </div>
 
+  <!-- Gradient na dole -->
   <div class="bottom-gradient"></div>
 
+  <!-- Skrypt powitalny -->
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        const welcome = document.getElementById('welcome');
+        const welcome = document.getElementById('welcome-screen');
         welcome.style.opacity = '0';
-
         setTimeout(() => {
           welcome.style.display = 'none';
-          document.getElementById('mainContent').style.display = 'flex';
+          document.body.classList.add('loaded');
+          document.getElementById('navbar').style.display = 'flex';
+          document.getElementById('mainContent').style.display = 'block';
         }, 500);
       }, 500);
     });
