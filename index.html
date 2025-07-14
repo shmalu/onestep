@@ -6,7 +6,6 @@
     <title>One Step</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Animacje */
       @keyframes fadeInUp {
         0% {
           opacity: 0;
@@ -17,12 +16,10 @@
           transform: translateY(0);
         }
       }
-
       .animate-fadeInUp {
         animation: fadeInUp 0.8s ease forwards;
       }
 
-      /* Pulsowanie dla opinii */
       @keyframes pulseSlow {
         0%, 100% {
           transform: scale(1);
@@ -33,7 +30,6 @@
           box-shadow: 0 0 10px 6px rgba(251, 190, 24, 0.3);
         }
       }
-
       .pulse-slow {
         animation: pulseSlow 3s ease-in-out infinite;
       }
@@ -56,7 +52,7 @@
       </div>
     </header>
 
-    <!-- Hero section -->
+    <!-- Hero -->
     <section class="bg-[#FEF8ED] pt-32 pb-24">
       <div class="max-w-5xl mx-auto text-center px-6 animate-fadeInUp">
         <h2 class="text-5xl font-extrabold mb-6 text-[#FBBE18] drop-shadow-md">Zbuduj swoją markę razem z nami!</h2>
@@ -126,7 +122,7 @@
       </div>
     </section>
 
-    <!-- Chat Messenger-like -->
+    <!-- Chatbox -->
     <div class="fixed bottom-6 right-6 z-50">
       <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
         💬
@@ -147,6 +143,7 @@
       </div>
     </div>
 
+    <!-- Skrypt czatu z AI -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const toggleBtn = document.getElementById('chatToggle');
@@ -156,7 +153,6 @@
         const chatInput = document.getElementById('chatInput');
         const chatMessages = document.getElementById('chatMessages');
 
-        // Auto-open
         setTimeout(() => {
           chatBox.classList.remove('hidden');
         }, 3000);
@@ -172,14 +168,22 @@
         chatForm.addEventListener('submit', (e) => {
           e.preventDefault();
           const message = chatInput.value.trim();
-          if (message) {
-            const bubble = document.createElement('div');
-            bubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right';
-            bubble.textContent = message;
-            chatMessages.appendChild(bubble);
+          if (!message) return;
+
+          const userBubble = document.createElement('div');
+          userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
+          userBubble.textContent = message;
+          chatMessages.appendChild(userBubble);
+          chatInput.value = '';
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+
+          setTimeout(() => {
+            const botBubble = document.createElement('div');
+            botBubble.className = 'bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto';
+            botBubble.textContent = "Dziękuję za wiadomość! Wkrótce się z Tobą skontaktujemy.";
+            chatMessages.appendChild(botBubble);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            chatInput.value = '';
-          }
+          }, 1000);
         });
       });
     </script>
