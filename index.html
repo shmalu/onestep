@@ -6,33 +6,10 @@
     <title>One Step</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @keyframes fadeInUp {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .animate-fadeInUp {
-        animation: fadeInUp 0.8s ease forwards;
-      }
-
-      @keyframes pulseSlow {
-        0%, 100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.5);
-        }
-        50% {
-          transform: scale(1.02);
-          box-shadow: 0 0 10px 6px rgba(251, 190, 24, 0.3);
-        }
-      }
-      .pulse-slow {
-        animation: pulseSlow 3s ease-in-out infinite;
-      }
+      @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }}
+      .animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
+      @keyframes pulseSlow { 0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251,190,24,0.5);} 50% { transform: scale(1.02); box-shadow: 0 0 10px 6px rgba(251,190,24,0.3); }}
+      .pulse-slow { animation: pulseSlow 3s ease-in-out infinite; }
     </style>
   </head>
   <body class="bg-white text-gray-800 font-sans leading-relaxed">
@@ -56,19 +33,23 @@
     <section class="bg-[#FEF8ED] pt-32 pb-24">
       <div class="max-w-5xl mx-auto text-center px-6 animate-fadeInUp">
         <h2 class="text-5xl font-extrabold mb-6 text-[#FBBE18] drop-shadow-md">Zbuduj swoją markę razem z nami!</h2>
-        <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
-          Nowoczesne rozwiązania marketingowe dla Twojego biznesu.
-        </p>
-        <a href="#contact" class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
-          Skontaktuj się z nami
-        </a>
+        <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">Nowoczesne rozwiązania marketingowe dla Twojego biznesu.</p>
+        <a href="#contact" class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">Skontaktuj się z nami</a>
       </div>
     </section>
 
     <!-- Funkcje -->
     <section id="features" class="py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
-        <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight">Dlaczego warto?</h3>
+      <div class="max-w-6xl mx-auto px-6 animate-fadeInUp">
+        <!-- Nagłówek + Oferta (TU DODANO KAFELEK OFERTA) -->
+        <div class="flex flex-col md:flex-row md:justify-between items-center mb-14 gap-6 text-center md:text-left">
+          <h3 class="text-4xl font-bold text-gray-900 tracking-tight">Dlaczego warto?</h3>
+          <div class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition duration-500 w-full md:w-1/2">
+            <h4 class="text-2xl font-semibold mb-2 text-[#FBBE18]">Oferta</h4>
+            <p class="text-gray-700 leading-relaxed">Sprawdź nasze pakiety usług dopasowane do różnych budżetów i potrzeb biznesowych.</p>
+          </div>
+        </div>
+        <!-- Pozostałe Funkcje -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition duration-500">
             <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Strategia</h4>
@@ -115,9 +96,7 @@
           <input type="text" placeholder="Imię" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required />
           <input type="email" placeholder="Adres e-mail" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required />
           <textarea placeholder="Wiadomość" rows="5" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required></textarea>
-          <button type="submit" class="w-full bg-[#FBBE18] text-white px-6 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
-            Wyślij wiadomość
-          </button>
+          <button type="submit" class="w-full bg-[#FBBE18] text-white px-6 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">Wyślij wiadomość</button>
         </form>
       </div>
     </section>
@@ -127,7 +106,6 @@
       <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
         💬
       </button>
-
       <div id="chatBox" class="hidden mt-4 w-80 bg-white border border-gray-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
         <div class="bg-[#FBBE18] text-white px-4 py-3 flex justify-between items-center">
           <h4 class="font-semibold">One Step Chat</h4>
@@ -153,45 +131,32 @@
         const chatInput = document.getElementById('chatInput');
         const chatMessages = document.getElementById('chatMessages');
 
-        setTimeout(() => {
-          chatBox.classList.remove('hidden');
-        }, 3000);
-
-        toggleBtn.addEventListener('click', () => {
-          chatBox.classList.toggle('hidden');
-        });
-
-        closeBtn.addEventListener('click', () => {
-          chatBox.classList.add('hidden');
-        });
-
+        setTimeout(() => { chatBox.classList.remove('hidden'); }, 3000);
+        toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+        closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
         chatForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const message = chatInput.value.trim();
-          if (!message) return;
-
+          e.preventDefault(); const message = chatInput.value.trim(); if (!message) return;
           const userBubble = document.createElement('div');
           userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
-          userBubble.textContent = message;
-          chatMessages.appendChild(userBubble);
-          chatInput.value = '';
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-
-          setTimeout(() => {
-            const botBubble = document.createElement('div');
+          userBubble.textContent = message; chatMessages.appendChild(userBubble);
+          chatInput.value = ''; chatMessages.scrollTop = chatMessages.scrollHeight;
+          setTimeout(() => { const botBubble = document.createElement('div');
             botBubble.className = 'bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto';
             botBubble.textContent = "Dziękuję za wiadomość! Wkrótce się z Tobą skontaktujemy.";
-            chatMessages.appendChild(botBubble);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatMessages.appendChild(botBubble); chatMessages.scrollTop = chatMessages.scrollHeight;
           }, 1000);
         });
       });
     </script>
 
     <!-- Stopka -->
-   <footer class="bg-gray-100 py-8 mt-12">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">
-        &copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.
+    <footer class="bg-gray-100 py-8 mt-12">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-gray-600 gap-4">
+        <div class="flex items-center space-x-3">
+          <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto" />
+          <span class="font-semibold text-[#FBBE18] text-xl select-none">One Step</span>
+        </div>
+        <div class="text-sm select-none text-center md:text-right">&copy; 2025 OneStep. Wszelkie prawa zastrzeżone.</div>
       </div>
     </footer>
   </body>
