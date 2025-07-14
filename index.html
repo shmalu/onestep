@@ -149,17 +149,26 @@
   </div>
 </div>
 
+<!-- Skrypt czatu -->
 <script>
-  const toggleBtn = document.getElementById('chatToggle');
-  const chatBox = document.getElementById('chatBox');
-  const closeBtn = document.getElementById('chatClose');
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const closeBtn = document.getElementById('chatClose');
 
-  toggleBtn.addEventListener('click', () => {
-    chatBox.classList.toggle('hidden');
-  });
+    // Automatyczne otwarcie po 3 sekundach
+    setTimeout(() => {
+      chatBox.classList.remove('hidden');
+    }, 3000);
 
-  closeBtn.addEventListener('click', () => {
-    chatBox.classList.add('hidden');
+    // Ręczne otwieranie/zamykanie
+    toggleBtn.addEventListener('click', () => {
+      chatBox.classList.toggle('hidden');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      chatBox.classList.add('hidden');
+    });
   });
 </script>
 
