@@ -2,88 +2,129 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Moja Marka</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Klasa do czarnego obrysu tekstu */
+      .text-outline {
+        color: white;
+        -webkit-text-stroke: 1px black;
+        text-stroke: 1px black;
+      }
+      body {
+        background-color: #FBBE18;
+      }
+      /* Usuwamy cienie dla header i stopki, bo na takim tle mogą nie wyglądać dobrze */
+      header, footer {
+        background: transparent;
+        box-shadow: none;
+      }
+      a {
+        /* linki też białe z obrysem */
+        color: white;
+        -webkit-text-stroke: 0.7px black;
+        text-stroke: 0.7px black;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #222;
+        -webkit-text-stroke: 0;
+        text-stroke: 0;
+      }
+      input, textarea, button {
+        /* jasne pola i przyciski na tle, żeby były czytelne */
+        background: rgba(255 255 255 / 0.9);
+        color: #222;
+        border: none;
+      }
+      input::placeholder, textarea::placeholder {
+        color: #666;
+      }
+      button:hover {
+        background: #333;
+        color: white;
+      }
+    </style>
   </head>
-  <body class="bg-white text-gray-800">
+  <body class="text-outline">
     <!-- Nagłówek -->
-    <header class="bg-white shadow-md">
+    <header>
       <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-3">
           <img src="logoOS.png" alt="Logo MojaMarka" class="h-10 w-auto" />
-          <span class="text-2xl font-bold text-blue-600">MojaMarka</span>
+          <span class="text-2xl font-bold text-outline">MojaMarka</span>
         </div>
         <nav class="space-x-4">
-          <a href="#features" class="text-gray-700 hover:text-blue-600">Funkcje</a>
-          <a href="#opinions" class="text-gray-700 hover:text-blue-600">Opinie</a>
-          <a href="#contact" class="text-gray-700 hover:text-blue-600">Kontakt</a>
+          <a href="#features">Funkcje</a>
+          <a href="#opinions">Opinie</a>
+          <a href="#contact">Kontakt</a>
         </nav>
       </div>
     </header>
 
     <!-- Hero section -->
-    <section class="bg-blue-50 py-20">
+    <section class="py-20">
       <div class="max-w-5xl mx-auto text-center px-6">
-        <h2 class="text-4xl font-bold mb-4">Zbuduj swoją markę z nami</h2>
-        <p class="text-lg mb-8">Nowoczesne rozwiązania marketingowe dla Twojego biznesu.</p>
-        <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700">
+        <h2 class="text-4xl font-bold mb-4 text-outline">Zbuduj swoją markę z nami</h2>
+        <p class="text-lg mb-8 text-outline">Nowoczesne rozwiązania marketingowe dla Twojego biznesu.</p>
+        <a href="#contact" class="bg-white text-[#FBBE18] px-6 py-3 rounded-xl shadow hover:bg-gray-200 inline-block font-semibold transition">
           Skontaktuj się z nami
         </a>
       </div>
     </section>
 
     <!-- Funkcje -->
-    <section id="features" class="py-20 bg-white">
+    <section id="features" class="py-20">
       <div class="max-w-6xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-semibold mb-10">Dlaczego warto?</h3>
+        <h3 class="text-3xl font-semibold mb-10 text-outline">Dlaczego warto?</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div class="p-6 bg-gray-50 rounded-xl shadow">
-            <h4 class="text-xl font-semibold mb-2">Strategia</h4>
-            <p>Tworzymy spersonalizowane strategie marketingowe dopasowane do Twoich celów.</p>
+          <div class="p-6 rounded-xl shadow bg-white/30">
+            <h4 class="text-xl font-semibold mb-2 text-outline">Strategia</h4>
+            <p class="text-outline">Tworzymy spersonalizowane strategie marketingowe dopasowane do Twoich celów.</p>
           </div>
-          <div class="p-6 bg-gray-50 rounded-xl shadow">
-            <h4 class="text-xl font-semibold mb-2">Technologia</h4>
-            <p>Wykorzystujemy najnowsze narzędzia i automatyzację, aby zwiększyć efektywność.</p>
+          <div class="p-6 rounded-xl shadow bg-white/30">
+            <h4 class="text-xl font-semibold mb-2 text-outline">Technologia</h4>
+            <p class="text-outline">Wykorzystujemy najnowsze narzędzia i automatyzację, aby zwiększyć efektywność.</p>
           </div>
-          <div class="p-6 bg-gray-50 rounded-xl shadow">
-            <h4 class="text-xl font-semibold mb-2">Wsparcie</h4>
-            <p>Nasza pomoc techniczna i doradztwo są dostępne na każdym etapie współpracy.</p>
+          <div class="p-6 rounded-xl shadow bg-white/30">
+            <h4 class="text-xl font-semibold mb-2 text-outline">Wsparcie</h4>
+            <p class="text-outline">Nasza pomoc techniczna i doradztwo są dostępne na każdym etapie współpracy.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Opinie -->
-    <section id="opinions" class="py-20 bg-gray-50">
+    <section id="opinions" class="py-20">
       <div class="max-w-6xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-semibold mb-10">Co mówią nasi klienci?</h3>
+        <h3 class="text-3xl font-semibold mb-10 text-outline">Co mówią nasi klienci?</h3>
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-6 rounded-xl shadow">
-            <p class="italic">"Znakomita współpraca – nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
-            <div class="mt-4 font-semibold">— Anna K., właścicielka sklepu online</div>
+          <div class="p-6 rounded-xl shadow bg-white/30">
+            <p class="italic text-outline">"Znakomita współpraca – nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
+            <div class="mt-4 font-semibold text-outline">— Anna K., właścicielka sklepu online</div>
           </div>
-          <div class="bg-white p-6 rounded-xl shadow">
-            <p class="italic">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
-            <div class="mt-4 font-semibold">— Michał Z., CEO startupu</div>
+          <div class="p-6 rounded-xl shadow bg-white/30">
+            <p class="italic text-outline">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
+            <div class="mt-4 font-semibold text-outline">— Michał Z., CEO startupu</div>
           </div>
-          <div class="bg-white p-6 rounded-xl shadow">
-            <p class="italic">"Świetna obsługa klienta i szybka realizacja usług."</p>
-            <div class="mt-4 font-semibold">— Katarzyna M., freelancerka</div>
+          <div class="p-6 rounded-xl shadow bg-white/30">
+            <p class="italic text-outline">"Świetna obsługa klienta i szybka realizacja usług."</p>
+            <div class="mt-4 font-semibold text-outline">— Katarzyna M., freelancerka</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Kontakt -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20">
       <div class="max-w-3xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-semibold mb-6">Skontaktuj się z nami</h3>
+        <h3 class="text-3xl font-semibold mb-6 text-outline">Skontaktuj się z nami</h3>
         <form class="space-y-6">
-          <input type="text" placeholder="Imię i nazwisko" class="w-full px-4 py-3 border rounded-xl" required />
-          <input type="email" placeholder="Adres e-mail" class="w-full px-4 py-3 border rounded-xl" required />
-          <textarea placeholder="Wiadomość" rows="4" class="w-full px-4 py-3 border rounded-xl" required></textarea>
-          <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700">
+          <input type="text" placeholder="Imię i nazwisko" required />
+          <input type="email" placeholder="Adres e-mail" required />
+          <textarea placeholder="Wiadomość" rows="4" required></textarea>
+          <button type="submit" class="px-6 py-3 rounded-xl shadow font-semibold cursor-pointer w-full max-w-xs mx-auto block">
             Wyślij wiadomość
           </button>
         </form>
@@ -91,10 +132,8 @@
     </section>
 
     <!-- Stopka -->
-    <footer class="bg-gray-100 py-6 mt-10">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-600">
-        &copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.
-      </div>
+    <footer class="py-6 mt-10 text-center text-white" style="text-shadow: 1px 1px 2px black;">
+      &copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.
     </footer>
   </body>
 </html>
