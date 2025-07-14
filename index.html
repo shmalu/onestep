@@ -125,53 +125,64 @@
         </form>
       </div>
     </section>
-<!-- Chat Bubble -->
-<div class="fixed bottom-6 right-6 z-50">
-  <!-- Przycisk otwierający chat -->
-  <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
-  💬
-  </button>
 
-  <!-- Okno czatu -->
-  <div id="chatBox" class="hidden mt-4 w-80 bg-white border border-gray-300 rounded-2xl shadow-lg p-6 animate-fadeInUp">
-    <div class="flex justify-between items-center mb-4">
-      <h4 class="font-bold text-gray-800">Porozmawiaj z nami</h4>
-      <button id="chatClose" class="text-gray-400 hover:text-red-500 text-xl leading-none">&times;</button>
-    </div>
-    <form class="space-y-4 text-sm">
-      <input type="text" placeholder="Twoje imię" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required>
-      <input type="email" placeholder="Adres e-mail" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required>
-      <textarea placeholder="Wiadomość" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required></textarea>
-      <button type="submit" class="w-full bg-[#FBBE18] text-white px-4 py-2 rounded-xl hover:bg-[#e0a917] transition">
-        Wyślij
+    <!-- Chat Messenger-like -->
+    <div class="fixed bottom-6 right-6 z-50">
+      <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
+        💬
       </button>
-    </form>
-  </div>
-</div>
 
-<!-- Skrypt czatu -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggleBtn = document.getElementById('chatToggle');
-    const chatBox = document.getElementById('chatBox');
-    const closeBtn = document.getElementById('chatClose');
+      <div id="chatBox" class="hidden mt-4 w-80 bg-white border border-gray-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div class="bg-[#FBBE18] text-white px-4 py-3 flex justify-between items-center">
+          <h4 class="font-semibold">One Step Chat</h4>
+          <button id="chatClose" class="text-white text-xl leading-none hover:text-red-100">&times;</button>
+        </div>
+        <div class="flex-1 p-4 space-y-2 text-sm overflow-y-auto h-60" id="chatMessages">
+          <div class="bg-gray-100 p-2 rounded-xl self-start max-w-[70%]">Cześć! Jak możemy Ci pomóc?</div>
+        </div>
+        <form id="chatForm" class="p-4 border-t border-gray-200 flex items-center gap-2">
+          <input type="text" id="chatInput" placeholder="Napisz wiadomość..." class="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required>
+          <button type="submit" class="bg-[#FBBE18] text-white px-4 py-2 rounded-full text-sm hover:bg-[#e0a917]">Wyślij</button>
+        </form>
+      </div>
+    </div>
 
-    // Automatyczne otwarcie po 3 sekundach
-    setTimeout(() => {
-      chatBox.classList.remove('hidden');
-    }, 3000);
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.getElementById('chatToggle');
+        const chatBox = document.getElementById('chatBox');
+        const closeBtn = document.getElementById('chatClose');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
 
-    // Ręczne otwieranie/zamykanie
-    toggleBtn.addEventListener('click', () => {
-      chatBox.classList.toggle('hidden');
-    });
+        // Auto-open
+        setTimeout(() => {
+          chatBox.classList.remove('hidden');
+        }, 3000);
 
-    closeBtn.addEventListener('click', () => {
-      chatBox.classList.add('hidden');
-    });
-  });
-</script>
+        toggleBtn.addEventListener('click', () => {
+          chatBox.classList.toggle('hidden');
+        });
 
+        closeBtn.addEventListener('click', () => {
+          chatBox.classList.add('hidden');
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const message = chatInput.value.trim();
+          if (message) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right';
+            bubble.textContent = message;
+            chatMessages.appendChild(bubble);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatInput.value = '';
+          }
+        });
+      });
+    </script>
 
     <!-- Stopka -->
     <footer class="bg-gray-100 py-8 mt-12">
@@ -179,6 +190,5 @@
         &copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.
       </div>
     </footer>
-
   </body>
 </html>
