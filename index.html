@@ -18,6 +18,12 @@
       overflow: hidden;
     }
 
+    body.loaded {
+      background-color: #FBBE18;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
     /* Ekran powitalny */
     #welcome-screen {
       position: fixed;
@@ -30,17 +36,23 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      color: white;
+      color: #FBBE18; /* kolor jak tło */
       font-size: 48px;
-      opacity: 1;
-      transition: opacity 0.5s ease;
+      opacity: 0;
+      animation: fadeInScale 1.2s ease forwards;
     }
 
-    /* Główne tło po załadowaniu */
-    body.loaded {
-      background-color: #FBBE18;
-      overflow-x: hidden;
-      overflow-y: auto;
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+        color: #FBBE18;
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        color: white;
+      }
     }
 
     /* Pasek nawigacji */
@@ -54,9 +66,6 @@
       padding: 20px 0;
       z-index: 1000;
       background: transparent;
-      opacity: 0;
-      transform: translateY(100px);
-      animation: slideUp 0.8s ease forwards;
     }
 
     .nav-item {
@@ -68,18 +77,21 @@
       transition: background 0.3s ease;
       color: #000;
       font-weight: bold;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: slideUpDelayed 0.6s ease forwards;
     }
 
     .nav-item:hover {
       background: rgba(0, 0, 0, 0.2);
     }
 
-    .nav-item:nth-child(1) { animation-delay: 0.3s; }
-    .nav-item:nth-child(2) { animation-delay: 0.5s; }
-    .nav-item:nth-child(3) { animation-delay: 0.7s; }
-    .nav-item:nth-child(4) { animation-delay: 0.9s; }
+    .nav-item:nth-child(1) { animation-delay: 0.6s; }
+    .nav-item:nth-child(2) { animation-delay: 0.8s; }
+    .nav-item:nth-child(3) { animation-delay: 1s; }
+    .nav-item:nth-child(4) { animation-delay: 1.2s; }
 
-    @keyframes slideUp {
+    @keyframes slideUpDelayed {
       to {
         transform: translateY(0);
         opacity: 1;
@@ -93,7 +105,7 @@
       color: #111;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
-      animation-delay: 1s;
+      animation-delay: 1.5s;
     }
 
     .main-content h1 {
@@ -113,7 +125,6 @@
       }
     }
 
-    /* Subtelny gradient na dole wciąż może być dodany, ale jaśniejszy */
     .bottom-gradient {
       position: fixed;
       bottom: 0;
@@ -159,7 +170,7 @@
           document.getElementById('navbar').style.display = 'flex';
           document.getElementById('mainContent').style.display = 'block';
         }, 500);
-      }, 500);
+      }, 1500); // dłuższy czas na animację wejścia "Witaj!"
     });
   </script>
 
