@@ -125,6 +125,44 @@
         </form>
       </div>
     </section>
+<!-- Chat Bubble -->
+<div class="fixed bottom-6 right-6 z-50">
+  <!-- Przycisk otwierający chat -->
+  <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
+    💬
+  </button>
+
+  <!-- Okno czatu -->
+  <div id="chatBox" class="hidden mt-4 w-80 bg-white border border-gray-300 rounded-2xl shadow-lg p-6 animate-fadeInUp">
+    <div class="flex justify-between items-center mb-4">
+      <h4 class="font-bold text-gray-800">Porozmawiaj z nami</h4>
+      <button id="chatClose" class="text-gray-400 hover:text-red-500 text-xl leading-none">&times;</button>
+    </div>
+    <form class="space-y-4 text-sm">
+      <input type="text" placeholder="Twoje imię" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required>
+      <input type="email" placeholder="Adres e-mail" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required>
+      <textarea placeholder="Wiadomość" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required></textarea>
+      <button type="submit" class="w-full bg-[#FBBE18] text-white px-4 py-2 rounded-xl hover:bg-[#e0a917] transition">
+        Wyślij
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('chatToggle');
+  const chatBox = document.getElementById('chatBox');
+  const closeBtn = document.getElementById('chatClose');
+
+  toggleBtn.addEventListener('click', () => {
+    chatBox.classList.toggle('hidden');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    chatBox.classList.add('hidden');
+  });
+</script>
+
 
     <!-- Stopka -->
     <footer class="bg-gray-100 py-8 mt-12">
