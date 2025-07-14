@@ -5,85 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Moja Marka</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Animacje */
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fadeInUp {
+        animation: fadeInUp 0.8s ease forwards;
+      }
+
+      /* Pulsowanie dla opinii */
+      @keyframes pulseSlow {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+        }
+        50% {
+          transform: scale(1.02);
+          box-shadow: 0 0 10px 6px rgba(59, 130, 246, 0.3);
+        }
+      }
+
+      .pulse-slow {
+        animation: pulseSlow 3s ease-in-out infinite;
+      }
+    </style>
   </head>
-  <body class="bg-white text-gray-800">
+  <body class="bg-white text-gray-800 font-sans leading-relaxed">
+
     <!-- Nagłówek -->
-    <header class="bg-white shadow-md">
+    <header class="bg-white shadow-md fixed w-full z-20">
       <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-3">
           <img src="logoOS.png" alt="Logo MojaMarka" class="h-10 w-auto" />
-          <span class="text-2xl font-bold text-blue-600">MojaMarka</span>
+          <span class="text-3xl font-extrabold text-blue-600 tracking-wide select-none">MojaMarka</span>
         </div>
-        <nav class="space-x-4">
-          <a href="#features" class="text-gray-700 hover:text-blue-600">Funkcje</a>
-          <a href="#opinions" class="text-gray-700 hover:text-blue-600">Opinie</a>
-          <a href="#contact" class="text-gray-700 hover:text-blue-600">Kontakt</a>
+        <nav class="space-x-6 font-medium text-gray-700">
+          <a href="#features" class="hover:text-blue-600 transition duration-300">Funkcje</a>
+          <a href="#opinions" class="hover:text-blue-600 transition duration-300">Opinie</a>
+          <a href="#contact" class="hover:text-blue-600 transition duration-300">Kontakt</a>
         </nav>
       </div>
     </header>
 
     <!-- Hero section -->
-    <section class="bg-blue-50 py-20">
-      <div class="max-w-5xl mx-auto text-center px-6">
-        <h2 class="text-4xl font-bold mb-4">Zbuduj swoją markę z nami</h2>
-        <p class="text-lg mb-8">Nowoczesne rozwiązania marketingowe dla Twojego biznesu.</p>
-        <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700">
+    <section class="bg-blue-50 pt-32 pb-24">
+      <div class="max-w-5xl mx-auto text-center px-6 animate-fadeInUp">
+        <h2 class="text-5xl font-extrabold mb-6 text-blue-700 drop-shadow-md">Zbuduj swoją markę z nami</h2>
+        <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
+          Nowoczesne rozwiązania marketingowe dla Twojego biznesu.
+        </p>
+        <a href="#contact" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-blue-700 transition transform hover:-translate-y-1 hover:scale-105">
           Skontaktuj się z nami
         </a>
       </div>
     </section>
 
     <!-- Funkcje -->
-    <section id="features" class="py-20 bg-white">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-semibold mb-10">Dlaczego warto?</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div class="p-6 bg-gray-50 rounded-xl shadow">
-            <h4 class="text-xl font-semibold mb-2">Strategia</h4>
-            <p>Tworzymy spersonalizowane strategie marketingowe dopasowane do Twoich celów.</p>
+    <section id="features" class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
+        <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight">Dlaczego warto?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition duration-500">
+            <h4 class="text-2xl font-semibold mb-4 text-blue-600">Strategia</h4>
+            <p class="text-gray-700 leading-relaxed">Tworzymy spersonalizowane strategie marketingowe dopasowane do Twoich celów.</p>
           </div>
-          <div class="p-6 bg-gray-50 rounded-xl shadow">
-            <h4 class="text-xl font-semibold mb-2">Technologia</h4>
-            <p>Wykorzystujemy najnowsze narzędzia i automatyzację, aby zwiększyć efektywność.</p>
+          <div class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition duration-500">
+            <h4 class="text-2xl font-semibold mb-4 text-blue-600">Technologia</h4>
+            <p class="text-gray-700 leading-relaxed">Wykorzystujemy najnowsze narzędzia i automatyzację, aby zwiększyć efektywność.</p>
           </div>
-          <div class="p-6 bg-gray-50 rounded-xl shadow">
-            <h4 class="text-xl font-semibold mb-2">Wsparcie</h4>
-            <p>Nasza pomoc techniczna i doradztwo są dostępne na każdym etapie współpracy.</p>
+          <div class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition duration-500">
+            <h4 class="text-2xl font-semibold mb-4 text-blue-600">Wsparcie</h4>
+            <p class="text-gray-700 leading-relaxed">Nasza pomoc techniczna i doradztwo są dostępne na każdym etapie współpracy.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Opinie -->
-    <section id="opinions" class="py-20 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-semibold mb-10">Co mówią nasi klienci?</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-6 rounded-xl shadow">
-            <p class="italic">"Znakomita współpraca – nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
-            <div class="mt-4 font-semibold">— Anna K., właścicielka sklepu online</div>
+    <section id="opinions" class="py-24 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
+        <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight">Co mówią nasi klienci?</h3>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
+            <p class="italic text-gray-700 text-lg">"Znakomita współpraca – nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
+            <div class="mt-6 font-semibold text-blue-700">— Anna K., właścicielka sklepu online</div>
           </div>
-          <div class="bg-white p-6 rounded-xl shadow">
-            <p class="italic">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
-            <div class="mt-4 font-semibold">— Michał Z., CEO startupu</div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg pulse-slow delay-200">
+            <p class="italic text-gray-700 text-lg">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
+            <div class="mt-6 font-semibold text-blue-700">— Michał Z., CEO startupu</div>
           </div>
-          <div class="bg-white p-6 rounded-xl shadow">
-            <p class="italic">"Świetna obsługa klienta i szybka realizacja usług."</p>
-            <div class="mt-4 font-semibold">— Katarzyna M., freelancerka</div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg pulse-slow delay-400">
+            <p class="italic text-gray-700 text-lg">"Świetna obsługa klienta i szybka realizacja usług."</p>
+            <div class="mt-6 font-semibold text-blue-700">— Katarzyna M., freelancerka</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Kontakt -->
-    <section id="contact" class="py-20 bg-white">
-      <div class="max-w-3xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-semibold mb-6">Skontaktuj się z nami</h3>
-        <form class="space-y-6">
-          <input type="text" placeholder="Imię i nazwisko" class="w-full px-4 py-3 border rounded-xl" required />
-          <input type="email" placeholder="Adres e-mail" class="w-full px-4 py-3 border rounded-xl" required />
-          <textarea placeholder="Wiadomość" rows="4" class="w-full px-4 py-3 border rounded-xl" required></textarea>
-          <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700">
+    <section id="contact" class="py-24 bg-white">
+      <div class="max-w-3xl mx-auto px-6 text-center animate-fadeInUp">
+        <h3 class="text-4xl font-bold mb-8 text-gray-900 tracking-tight">Skontaktuj się z nami</h3>
+        <form class="space-y-8 text-left">
+          <input type="text" placeholder="Imię i nazwisko" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+          <input type="email" placeholder="Adres e-mail" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+          <textarea placeholder="Wiadomość" rows="5" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+          <button type="submit" class="w-full bg-blue-600 text-white px-6 py-4 rounded-3xl shadow-lg hover:bg-blue-700 transition transform hover:-translate-y-1 hover:scale-105">
             Wyślij wiadomość
           </button>
         </form>
@@ -91,10 +127,11 @@
     </section>
 
     <!-- Stopka -->
-    <footer class="bg-gray-100 py-6 mt-10">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-600">
+    <footer class="bg-gray-100 py-8 mt-12">
+      <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">
         &copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.
       </div>
     </footer>
+
   </body>
 </html>
