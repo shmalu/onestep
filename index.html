@@ -47,27 +47,6 @@
       }
     }
 
-    .welcome-logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 60px;
-      height: auto;
-      opacity: 0;
-      animation: fadeInLogo 1.2s ease forwards;
-    }
-
-    @keyframes fadeInLogo {
-      0% {
-        transform: translateY(-10px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
     .welcome-text {
       font-size: 64px;
       font-family: 'Fredoka One', cursive;
@@ -106,7 +85,7 @@
     }
 
     .navbar-logo {
-      width: 40px;
+      width: 80px;
       height: auto;
     }
 
@@ -189,7 +168,6 @@
 
   <!-- Warstwa powitalna -->
   <div id="welcome-screen">
-    <img src="logoOS.png" alt="Logo OneStep" class="welcome-logo">
     <div class="welcome-text">Witaj!</div>
   </div>
 
@@ -225,7 +203,7 @@
           document.getElementById('navbar').style.display = 'flex';
           document.getElementById('mainContent').style.display = 'block';
         }, 500);
-      }, 1500); // dłuższy czas na animację wejścia "Witaj!"
+      }, 1500);
     });
   </script>
 
