@@ -6,33 +6,17 @@
     <title>One Step</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @keyframes fadeInUp {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      @keyframes fadeInUp { 
+        0% { opacity: 0; transform: translateY(20px); } 
+        100% { opacity: 1; transform: translateY(0); } 
       }
-      .animate-fadeInUp {
-        animation: fadeInUp 0.8s ease forwards;
-      }
+      .animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
 
-      @keyframes pulseSlow {
-        0%, 100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.5);
-        }
-        50% {
-          transform: scale(1.02);
-          box-shadow: 0 0 10px 6px rgba(251, 190, 24, 0.3);
-        }
+      @keyframes pulseSlow { 
+        0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251,190,24,0.5); } 
+        50% { transform: scale(1.02); box-shadow: 0 0 10px 6px rgba(251,190,24,0.3); } 
       }
-      .pulse-slow {
-        animation: pulseSlow 3s ease-in-out infinite;
-      }
+      .pulse-slow { animation: pulseSlow 3s ease-in-out infinite; }
     </style>
   </head>
   <body class="bg-white text-gray-800 font-sans leading-relaxed">
@@ -48,6 +32,7 @@
           <a href="#features" class="hover:text-[#FBBE18] transition duration-300">Funkcje</a>
           <a href="#opinions" class="hover:text-[#FBBE18] transition duration-300">Opinie</a>
           <a href="#contact" class="hover:text-[#FBBE18] transition duration-300">Kontakt</a>
+          <a href="oferta.html" class="hover:text-[#FBBE18] transition duration-300">Oferta</a>
         </nav>
       </div>
     </header>
@@ -127,7 +112,6 @@
       <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
         💬
       </button>
-
       <div id="chatBox" class="hidden mt-4 w-80 bg-white border border-gray-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
         <div class="bg-[#FBBE18] text-white px-4 py-3 flex justify-between items-center">
           <h4 class="font-semibold">One Step Chat</h4>
@@ -153,30 +137,20 @@
         const chatInput = document.getElementById('chatInput');
         const chatMessages = document.getElementById('chatMessages');
 
-        setTimeout(() => {
-          chatBox.classList.remove('hidden');
-        }, 3000);
-
-        toggleBtn.addEventListener('click', () => {
-          chatBox.classList.toggle('hidden');
-        });
-
-        closeBtn.addEventListener('click', () => {
-          chatBox.classList.add('hidden');
-        });
+        setTimeout(() => { chatBox.classList.remove('hidden'); }, 3000);
+        toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+        closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
 
         chatForm.addEventListener('submit', (e) => {
           e.preventDefault();
           const message = chatInput.value.trim();
           if (!message) return;
-
           const userBubble = document.createElement('div');
           userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
           userBubble.textContent = message;
           chatMessages.appendChild(userBubble);
           chatInput.value = '';
           chatMessages.scrollTop = chatMessages.scrollHeight;
-
           setTimeout(() => {
             const botBubble = document.createElement('div');
             botBubble.className = 'bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto';
@@ -189,10 +163,17 @@
     </script>
 
     <!-- Stopka -->
-   <footer class="bg-gray-100 py-8 mt-12">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">
-        &copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.
+    <footer class="bg-gray-100 py-8 mt-12">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-gray-600 gap-4">
+        <div class="flex items-center space-x-3">
+          <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto" />
+          <span class="font-semibold text-[#FBBE18] text-xl select-none">One Step</span>
+        </div>
+        <div class="text-sm select-none text-center md:text-right">
+          &copy; 2025 OneStep. Wszelkie prawa zastrzeżone.
+        </div>
       </div>
     </footer>
+
   </body>
 </html>
