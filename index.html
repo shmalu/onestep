@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <link rel="icon" type="image/png" href="logoOS.png" sizes="16x16" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -69,7 +70,7 @@
 
     .welcome-text {
       font-size: 64px;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Fredoka One', cursive;
       color: white;
       text-shadow:
         -2px -2px 0 black,
@@ -97,11 +98,23 @@
       top: 0;
       width: 100%;
       display: flex;
-      justify-content: center;
+      align-items: center;
       gap: 40px;
-      padding: 20px 0;
+      padding: 10px 20px;
       z-index: 1000;
       background: transparent;
+    }
+
+    .navbar-logo {
+      width: 40px;
+      height: auto;
+    }
+
+    .nav-items {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-grow: 1;
     }
 
     .nav-item {
@@ -180,12 +193,15 @@
     <div class="welcome-text">Witaj!</div>
   </div>
 
-  <!-- Nawigacja -->
+  <!-- Pasek nawigacji -->
   <div class="navbar" id="navbar" style="display: none;">
-    <div class="nav-item">Kontakt</div>
-    <div class="nav-item">Galeria</div>
-    <div class="nav-item">Pole1</div>
-    <div class="nav-item">Pole2</div>
+    <img src="logoOS.png" alt="Logo OneStep" class="navbar-logo">
+    <div class="nav-items">
+      <div class="nav-item">Kontakt</div>
+      <div class="nav-item">Galeria</div>
+      <div class="nav-item">Pole1</div>
+      <div class="nav-item">Pole2</div>
+    </div>
   </div>
 
   <!-- Główna treść -->
