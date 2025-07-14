@@ -31,27 +31,63 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: black;
+      background: #FBBE18;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      color: #FBBE18; /* kolor jak tło */
-      font-size: 48px;
       opacity: 0;
-      animation: fadeInScale 1.2s ease forwards;
+      animation: fadeInScreen 1s ease forwards;
     }
 
-    @keyframes fadeInScale {
+    @keyframes fadeInScreen {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .welcome-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: auto;
+      opacity: 0;
+      animation: fadeInLogo 1.2s ease forwards;
+    }
+
+    @keyframes fadeInLogo {
       0% {
+        transform: translateY(-10px);
         opacity: 0;
-        transform: scale(0.9);
-        color: #FBBE18;
       }
       100% {
+        transform: translateY(0);
         opacity: 1;
+      }
+    }
+
+    .welcome-text {
+      font-size: 64px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: white;
+      text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+      opacity: 0;
+      animation: fadeInText 1.2s ease forwards;
+    }
+
+    @keyframes fadeInText {
+      0% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      100% {
         transform: scale(1);
-        color: white;
+        opacity: 1;
       }
     }
 
@@ -139,7 +175,10 @@
 <body>
 
   <!-- Warstwa powitalna -->
-  <div id="welcome-screen">Witaj!</div>
+  <div id="welcome-screen">
+    <img src="logoOS.png" alt="Logo OneStep" class="welcome-logo">
+    <div class="welcome-text">Witaj!</div>
+  </div>
 
   <!-- Nawigacja -->
   <div class="navbar" id="navbar" style="display: none;">
