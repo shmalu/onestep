@@ -1,211 +1,100 @@
 <!DOCTYPE html>
-<html lang="pl" style="scroll-behavior: smooth;">
-<head>
-  <title>OneStep</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <link rel="icon" type="image/png" href="logoOS.png" sizes="16x16" />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moja Marka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- Nagłówek -->
+    <header class="bg-white shadow-md">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <img src="logoOS.png" alt="Logo MojaMarka" class="h-10 w-auto" />
+          <span class="text-2xl font-bold text-blue-600">MojaMarka</span>
+        </div>
+        <nav class="space-x-4">
+          <a href="#features" class="text-gray-700 hover:text-blue-600">Funkcje</a>
+          <a href="#opinions" class="text-gray-700 hover:text-blue-600">Opinie</a>
+          <a href="#contact" class="text-gray-700 hover:text-blue-600">Kontakt</a>
+        </nav>
+      </div>
+    </header>
 
-    body, html {
-      height: 100%;
-      font-family: 'Arial', sans-serif;
-      overflow: hidden;
-    }
+    <!-- Hero section -->
+    <section class="bg-blue-50 py-20">
+      <div class="max-w-5xl mx-auto text-center px-6">
+        <h2 class="text-4xl font-bold mb-4">Zbuduj swoją markę z nami</h2>
+        <p class="text-lg mb-8">Nowoczesne rozwiązania marketingowe dla Twojego biznesu.</p>
+        <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700">
+          Skontaktuj się z nami
+        </a>
+      </div>
+    </section>
 
-    body.loaded {
-      background-color: #FBBE18;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+    <!-- Funkcje -->
+    <section id="features" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h3 class="text-3xl font-semibold mb-10">Dlaczego warto?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="p-6 bg-gray-50 rounded-xl shadow">
+            <h4 class="text-xl font-semibold mb-2">Strategia</h4>
+            <p>Tworzymy spersonalizowane strategie marketingowe dopasowane do Twoich celów.</p>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-xl shadow">
+            <h4 class="text-xl font-semibold mb-2">Technologia</h4>
+            <p>Wykorzystujemy najnowsze narzędzia i automatyzację, aby zwiększyć efektywność.</p>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-xl shadow">
+            <h4 class="text-xl font-semibold mb-2">Wsparcie</h4>
+            <p>Nasza pomoc techniczna i doradztwo są dostępne na każdym etapie współpracy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    /* Ekran powitalny */
-    #welcome-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #FBBE18;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      animation: fadeInScreen 1s ease forwards;
-    }
+    <!-- Opinie -->
+    <section id="opinions" class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h3 class="text-3xl font-semibold mb-10">Co mówią nasi klienci?</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow">
+            <p class="italic">"Znakomita współpraca – nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
+            <div class="mt-4 font-semibold">— Anna K., właścicielka sklepu online</div>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow">
+            <p class="italic">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
+            <div class="mt-4 font-semibold">— Michał Z., CEO startupu</div>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow">
+            <p class="italic">"Świetna obsługa klienta i szybka realizacja usług."</p>
+            <div class="mt-4 font-semibold">— Katarzyna M., freelancerka</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    @keyframes fadeInScreen {
-      to {
-        opacity: 1;
-      }
-    }
+    <!-- Kontakt -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h3 class="text-3xl font-semibold mb-6">Skontaktuj się z nami</h3>
+        <form class="space-y-6">
+          <input type="text" placeholder="Imię i nazwisko" class="w-full px-4 py-3 border rounded-xl" required />
+          <input type="email" placeholder="Adres e-mail" class="w-full px-4 py-3 border rounded-xl" required />
+          <textarea placeholder="Wiadomość" rows="4" class="w-full px-4 py-3 border rounded-xl" required></textarea>
+          <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700">
+            Wyślij wiadomość
+          </button>
+        </form>
+      </div>
+    </section>
 
-    .welcome-text {
-      font-size: 64px;
-      font-family: 'Fredoka One', cursive;
-      color: white;
-      text-shadow:
-        -2px -2px 0 black,
-        2px -2px 0 black,
-        -2px 2px 0 black,
-        2px 2px 0 black;
-      opacity: 0;
-      animation: fadeInText 1.2s ease forwards;
-    }
-
-    @keyframes fadeInText {
-      0% {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    /* Pasek nawigacji */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      padding: 10px 20px;
-      z-index: 1000;
-      background: transparent;
-    }
-
-    .navbar-logo {
-      width: 80px;
-      height: auto;
-    }
-
-    .nav-items {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-grow: 1;
-    }
-
-    .nav-item {
-      font-size: 18px;
-      cursor: pointer;
-      padding: 10px 20px;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.1);
-      transition: background 0.3s ease;
-      color: #000;
-      font-weight: bold;
-      opacity: 0;
-      transform: translateY(100px);
-      animation: slideUpDelayed 0.6s ease forwards;
-    }
-
-    .nav-item:hover {
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .nav-item:nth-child(1) { animation-delay: 0.6s; }
-    .nav-item:nth-child(2) { animation-delay: 0.8s; }
-    .nav-item:nth-child(3) { animation-delay: 1s; }
-    .nav-item:nth-child(4) { animation-delay: 1.2s; }
-
-    @keyframes slideUpDelayed {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .main-content {
-      margin-top: 120px;
-      padding: 40px 20px;
-      text-align: center;
-      color: #111;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 1.5s;
-    }
-
-    .main-content h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-
-    .main-content p {
-      font-size: 18px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    .bottom-gradient {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(to top, rgba(255,255,255,0.3), transparent);
-      pointer-events: none;
-      z-index: 0;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Warstwa powitalna -->
-  <div id="welcome-screen">
-    <div class="welcome-text">Witaj!</div>
-  </div>
-
-  <!-- Pasek nawigacji -->
-  <div class="navbar" id="navbar" style="display: none;">
-    <img src="logoOS.png" alt="Logo OneStep" class="navbar-logo">
-    <div class="nav-items">
-      <div class="nav-item">Kontakt</div>
-      <div class="nav-item">Galeria</div>
-      <div class="nav-item">Pole1</div>
-      <div class="nav-item">Pole2</div>
-    </div>
-  </div>
-
-  <!-- Główna treść -->
-  <div class="main-content" id="mainContent" style="display: none;">
-    <h1>Witamy w OneStep</h1>
-    <p>To przestrzeń na Twoje portfolio, zdjęcia, opisy kampanii i efekty pracy marketingowej.</p>
-  </div>
-
-  <!-- Gradient -->
-  <div class="bottom-gradient"></div>
-
-  <!-- Skrypt -->
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const welcome = document.getElementById('welcome-screen');
-        welcome.style.opacity = '0';
-        setTimeout(() => {
-          welcome.style.display = 'none';
-          document.body.classList.add('loaded');
-          document.getElementById('navbar').style.display = 'flex';
-          document.getElementById('mainContent').style.display = 'block';
-        }, 500);
-      }, 1500);
-    });
-  </script>
-
-</body>
+    <!-- Stopka -->
+    <footer class="bg-gray-100 py-6 mt-10">
+      <div class="max-w-7xl mx-auto px-6 text-center text-gray-600">
+        &copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.
+      </div>
+    </footer>
+  </body>
 </html>
