@@ -141,6 +141,52 @@
       </div>
     </section>
 
+<!-- Kontener formularza kontaktowego wysuwanego z lewej strony -->
+<div id="contactOverlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden"></div>
+<div id="contactSlide" class="fixed top-0 left-0 h-full w-full sm:w-[400px] bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out z-50">
+  <div class="p-6 overflow-y-auto h-full">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-2xl font-bold text-gray-900">Skontaktuj się z nami</h3>
+      <button id="closeContact" class="text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+    </div>
+    <form class="space-y-6">
+      <input type="text" placeholder="Imię" class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required />
+      <input type="email" placeholder="Adres e-mail" class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required />
+      <textarea placeholder="Wiadomość" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required></textarea>
+      <button type="submit" class="w-full bg-[#FBBE18] text-white px-6 py-3 rounded-2xl shadow-lg hover:bg-[#e0a917] transition-transform hover:-translate-y-1 hover:scale-105">
+        Wyślij wiadomość
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Skrypt do obsługi wysuwanego formularza kontaktowego -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const contactLink = document.querySelector('a[href="#contact"]');
+    const contactSlide = document.getElementById('contactSlide');
+    const closeContact = document.getElementById('closeContact');
+    const overlay = document.getElementById('contactOverlay');
+
+    contactLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      contactSlide.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+    });
+
+    closeContact.addEventListener('click', () => {
+      contactSlide.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    });
+
+    overlay.addEventListener('click', () => {
+      contactSlide.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    });
+  });
+</script>
+
+
     <!-- Chatbox -->
     <div class="fixed bottom-6 right-6 z-50">
       <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
