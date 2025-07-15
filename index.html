@@ -55,6 +55,20 @@
   </head>
   <body class="bg-white text-gray-800 font-sans leading-relaxed">
 
+<!-- Ekran startowy z logo -->
+    <div id="introScreen" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+      <img src="logoOS.png" alt="Logo OneStep" class="h-24 w-auto" />
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const intro = document.getElementById('introScreen');
+          if (intro) intro.style.display = 'none';
+        }, 500);
+      });
+    </script>
+
     <!-- Nagłówek -->
     <header class="bg-white shadow-md fixed w-full z-20">
       <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
