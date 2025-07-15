@@ -33,6 +33,24 @@
       .pulse-slow {
         animation: pulseSlow 3s ease-in-out infinite;
       }
+
+      @keyframes pingOnce {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.6);
+        }
+        70% {
+          transform: scale(1.1);
+          box-shadow: 0 0 0 10px rgba(251, 190, 24, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(251, 190, 24, 0);
+        }
+      }
+      .ping-once {
+        animation: pingOnce 1s ease-out 1;
+      }
     </style>
   </head>
   <body class="bg-white text-gray-800 font-sans leading-relaxed">
@@ -154,6 +172,7 @@
         const chatMessages = document.getElementById('chatMessages');
 
         setTimeout(() => {
+          toggleBtn.classList.add('ping-once');
           chatBox.classList.remove('hidden');
         }, 3000);
 
