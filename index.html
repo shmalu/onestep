@@ -141,10 +141,10 @@
       </div>
     </section>
 
-<!-- Kontener formularza kontaktowego wysuwanego z lewej strony -->
+<!-- Kontener formularza kontaktowego wyśrodkowanego na ekranie z obwódką -->
 <div id="contactOverlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden"></div>
-<div id="contactSlide" class="fixed top-0 left-0 h-full w-full sm:w-[400px] bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out z-50">
-  <div class="p-6 overflow-y-auto h-full">
+<div id="contactSlide" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white border-4 border-[#FBBE18] rounded-3xl shadow-2xl z-50 scale-0 transition-transform duration-500 ease-in-out">
+  <div class="p-6 overflow-y-auto max-h-[90vh]">
     <div class="flex justify-between items-center mb-6">
       <h3 class="text-2xl font-bold text-gray-900">Skontaktuj się z nami</h3>
       <button id="closeContact" class="text-gray-600 hover:text-red-500 text-2xl">&times;</button>
@@ -160,7 +160,7 @@
   </div>
 </div>
 
-<!-- Skrypt do obsługi wysuwanego formularza kontaktowego -->
+<!-- Skrypt do obsługi formularza wyśrodkowanego -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const contactLink = document.querySelector('a[href="#contact"]');
@@ -170,17 +170,17 @@
 
     contactLink.addEventListener('click', (e) => {
       e.preventDefault();
-      contactSlide.classList.remove('-translate-x-full');
+      contactSlide.classList.remove('scale-0');
       overlay.classList.remove('hidden');
     });
 
     closeContact.addEventListener('click', () => {
-      contactSlide.classList.add('-translate-x-full');
+      contactSlide.classList.add('scale-0');
       overlay.classList.add('hidden');
     });
 
     overlay.addEventListener('click', () => {
-      contactSlide.classList.add('-translate-x-full');
+      contactSlide.classList.add('scale-0');
       overlay.classList.add('hidden');
     });
   });
