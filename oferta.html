@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oferta - One Step</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-sans leading-relaxed">
 
+  <!-- Nagłówek -->
+  <header class="bg-white shadow-md fixed w-full z-20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto" />
+        <span class="text-3xl font-extrabold text-[#FBBE18] tracking-wide select-none">One Step</span>
+      </div>
+      <nav class="space-x-4 font-medium text-gray-700 flex items-center">
+        <a href="index.html" class="bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition duration-300">Strona Główna</a>
+        <a href="#oferta" class="bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition duration-300">Oferta</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sekcja oferta -->
+  <main class="pt-32 pb-24 bg-[#FEF8ED]">
+    <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
+      <h2 class="text-4xl font-bold mb-12 text-gray-900">Nasza Oferta</h2>
+
+      <div class="grid md:grid-cols-3 gap-10">
+        <!-- Produkt 1 -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+          <img src="https://via.placeholder.com/300x200?text=Usługa+1" alt="Usługa 1" class="rounded-xl mb-4 w-full h-48 object-cover" />
+          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
+          <p class="text-gray-700 mb-2">Opis przykładowej usługi.</p>
+          <span class="text-lg font-bold text-gray-900">Cena: 299 zł</span>
+        </div>
+
+        <!-- Produkt 2 -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+          <img src="https://via.placeholder.com/300x200?text=Usługa+2" alt="Usługa 2" class="rounded-xl mb-4 w-full h-48 object-cover" />
+          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
+          <p class="text-gray-700 mb-2">Opis przykładowej usługi.</p>
+          <span class="text-lg font-bold text-gray-900">Cena: 499 zł</span>
+        </div>
+
+        <!-- Produkt 3 -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+          <img src="https://via.placeholder.com/300x200?text=Usługa+3" alt="Usługa 3" class="rounded-xl mb-4 w-full h-48 object-cover" />
+          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
+          <p class="text-gray-700 mb-2">Opis przykładowej usługi.</p>
+          <span class="text-lg font-bold text-gray-900">Cena: 699 zł</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Stopka -->
+  <footer class="bg-gray-100 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">
+      &copy; 2025 One Step. Wszelkie prawa zastrzeżone.
+    </div>
+  </footer>
+</body>
+</html>
