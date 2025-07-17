@@ -68,35 +68,6 @@
       transform: perspective(600px) rotateY(4deg) scale(1.02);
       transition: transform 0.5s ease;
     }
-/* Responsywna typografia */
-h2 { font-size: 2.5rem; }
-@media (min-width: 768px) {
-  h2 { font-size: 5rem; }
-}
-
-/* Nawigacja flex-wrap */
-header nav { flex-wrap: wrap; }
-header nav a { margin-bottom: 0.5rem; }
-
-/* Carousel: 1 slide na telefon */
-#oferta-slides > div {
-  flex: 0 0 100%;
-}
-@media (min-width: 768px) {
-  #oferta-slides > div {
-    flex: 0 0 50%;
-  }
-}
-
-/* Formularz i button */
-form input, form textarea, form button { width: 100%; }
-
-/* Sticky CTA */
-#stickyCTA { display: none; }
-@media (min-width: 640px) {
-  #stickyCTA { display: flex; }
-}
-
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -218,17 +189,17 @@ form input, form textarea, form button { width: 100%; }
         <div data-aos="zoom-in" data-aos-delay="100" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
           <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
           <p class="italic text-gray-700 text-lg">"Nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
-          <div class="mt-6 font-semibold text-[#FBBE18]">- Anna</div>
+          <div class="mt-6 font-semibold text-[#FBBE18]">— Anna</div>
         </div>
         <div data-aos="zoom-in" data-aos-delay="200" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
           <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
           <p class="italic text-gray-700 text-lg">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
-          <div class="mt-6 font-semibold text-[#FBBE18]">- Michał</div>
+          <div class="mt-6 font-semibold text-[#FBBE18]">— Michał</div>
         </div>
         <div data-aos="zoom-in" data-aos-delay="300" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
           <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
           <p class="italic text-gray-700 text-lg">"Świetna obsługa klienta i szybka realizacja usług."</p>
-          <div class="mt-6 font-semibold text-[#FBBE18]">- Katarzyna</div>
+          <div class="mt-6 font-semibold text-[#FBBE18]">— Katarzyna</div>
         </div>
       </div>
     </div>
