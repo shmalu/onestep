@@ -87,26 +87,46 @@
 </head>
 <body class="bg-white text-gray-800">
 
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Ujednolicone odstępy sekcji */
+    section { padding-top: 4rem; padding-bottom: 4rem; }
+
+    /* Kontrast nagłówków */
+    h2, h3 { color: #111827; } /* gray-900 */
+
+    /* Tilt hover effect */
+    .tilt-hover:hover { transform: perspective(600px) rotateY(4deg) scale(1.02); transition: transform 0.5s ease; }
+
+    /* Lazy-load placeholder */
+    img[loading="lazy"] { opacity: 0; transition: opacity .5s ease-in; }
+    img[loading="lazy"][data-loaded] { opacity: 1; }
+
+    /* Chatbox fixes */
+    #chatBox { width: 20rem !important; max-width: none !important; }
+    #chatToggle { margin-right: 0.5rem; }
+    #chatForm button[type="submit"] { margin-right: 0.5rem; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+
   <!-- Header -->
   <header class="bg-white shadow-md fixed w-full z-20" data-aos="fade-down">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3">
-        <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto" />
+        <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto" loading="lazy" onload="this.setAttribute('data-loaded','')" />
         <span class="text-2xl font-extrabold text-[#FBBE18] select-none">One Step</span>
       </div>
       <nav class="space-x-4 font-medium text-gray-700 flex items-center">
-        <a href="#oferta" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
-        </a>
-        <a href="#features" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="bar-chart-2" class="w-4 h-4 mr-2"></i>Dlaczego warto?
-        </a>
-        <a href="#opinions" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="users" class="w-4 h-4 mr-2"></i>Opinie
-        </a>
-        <a href="#contact" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="mail" class="w-4 h-4 mr-2"></i>Kontakt
-        </a>
+        <a href="#oferta" class="flex items-center bg-secondary text-white px-4 py-2 rounded-xl shadow hover:bg-secondary/90 transition"><i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta</a>
+        <a href="#features" class="flex items-center bg-secondary text-white px-4 py-2 rounded-xl shadow hover:bg-secondary/90 transition"><i data-feather="bar-chart-2" class="w-4 h-4 mr-2"></i>Dlaczego warto?</a>
+        <a href="#opinions" class="flex items-center bg-secondary text-white px-4 py-2 rounded-xl shadow hover:bg-secondary/90 transition"><i data-feather="users" class="w-4 h-4 mr-2"></i>Opinie</a>
+        <a href="#contact" class="flex items-center bg-secondary text-white px-4 py-2 rounded-xl shadow hover:bg-secondary/90 transition"><i data-feather="mail" class="w-4 h-4 mr-2"></i>Kontakt</a>
       </nav>
     </div>
   </header>
@@ -119,15 +139,9 @@
       </svg>
     </div>
     <div class="relative max-w-5xl mx-auto text-center px-6 animate-fadeInUp">
-      <h2 class="text-5xl font-extrabold mb-6 text-[#FBBE18] drop-shadow-md">
-        Zbuduj swoją markę razem z nami!
-      </h2>
-      <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
-        Nowoczesne rozwiązania marketingowe dla Twojego biznesu.
-      </p>
-      <a href="#contact" class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
-        Skontaktuj się z nami
-      </a>
+      <h2 class="text-5xl font-extrabold mb-6 text-[#FBBE18] drop-shadow-md">Zbuduj swoją markę razem z nami!</h2>
+      <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">Nowoczesne rozwiązania marketingowe dla Twojego biznesu.</p>
+      <a href="#contact" class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">Skontaktuj się z nami</a>
     </div>
   </section>
 
@@ -434,6 +448,14 @@
         }, 1000);
       });
     });
+  
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      AOS.init({ duration: 800, once: true });
+      feather.replace();
+    });
   </script>
+
 </body>
 </html>
