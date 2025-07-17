@@ -113,53 +113,45 @@
       </div>
     </section>
 
-<!-- Sekcja oferta z karuzelą i strzałkami poza boxem -->
+<!-- Sekcja oferta z karuzelą i strzałkami całkowicie na zewnątrz -->
 <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
   <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
     <h2 class="text-4xl font-bold mb-8 text-gray-900">Nasza Oferta</h2>
 
-    <div class="relative px-12">
+    <div class="relative">
       <!-- Kontener karuzeli -->
-      <div id="carousel" class="flex space-x-8 overflow-hidden">
+      <div id="carousel" class="flex space-x-8 overflow-hidden px-12">
         <!-- Produkt 1 -->
         <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
           <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
           <p class="text-gray-700">Opis przykładowej usługi.</p>
         </div>
-
         <!-- Produkt 2 -->
         <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
           <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
           <p class="text-gray-700">Opis przykładowej usługi.</p>
         </div>
-
         <!-- Produkt 3 -->
         <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
           <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
           <p class="text-gray-700">Opis przykładowej usługi.</p>
         </div>
-
         <!-- Produkt 4 -->
         <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
           <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
           <p class="text-gray-700">Opis przykładowej usługi.</p>
         </div>
-
-        <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 5</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
       </div>
 
-<div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 6</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
-</div>
-
-      <!-- Strzałki na zewnątrz -->
-      <button id="prevBtn" aria-label="Poprzednia oferta" class="absolute left-0 top-1/2 transform -translate-y-1/2 -ml-6 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
+      <!-- Strzałka lewo całkowicie na zewnątrz -->
+      <button id="prevBtn" aria-label="Poprzednia oferta"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
         &#10094;
       </button>
-      <button id="nextBtn" aria-label="Następna oferta" class="absolute right-0 top-1/2 transform -translate-y-1/2 -mr-6 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
+
+      <!-- Strzałka prawo całkowicie na zewnątrz -->
+      <button id="nextBtn" aria-label="Następna oferta"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
         &#10095;
       </button>
     </div>
@@ -169,7 +161,7 @@
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const itemWidth = carousel.querySelector('div').offsetWidth + 32; // szerokość kafelka + większy odstęp
+    const itemWidth = carousel.querySelector('div').offsetWidth + 32;
 
     prevBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
@@ -178,6 +170,11 @@
     nextBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
     });
+
+    carousel.addEventListener('wheel', e => e.preventDefault());
+    carousel.addEventListener('touchmove', e => e.preventDefault());
+  </script>
+</section>
 
     // Zablokuj scroll kółkiem i dotykiem
     carousel.addEventListener('wheel', e => e.preventDefault());
