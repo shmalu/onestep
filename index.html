@@ -148,6 +148,27 @@
   </div>
 </section>
 
+<!-- Modal oferty -->
+<div
+  id="ofertaModal"
+  class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50"
+>
+  <div class="bg-white p-8 rounded-2xl shadow-lg max-w-xl w-full relative mx-4">
+    <button
+      id="modalClose"
+      class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+      aria-label="Zamknij"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <h3 id="modalTitle" class="text-3xl font-semibold text-[#FBBE18] mb-4"></h3>
+    <p id="modalText" class="text-lg text-gray-700"></p>
+  </div>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const data = [
@@ -158,34 +179,38 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const wrapper = document.getElementById("oferta-slides");
-  const visible = 2;            // wyświetlamy 2 slajdy
-  const total = data.length;    // oryginalna liczba slajdów
-  let index = visible;          // startujemy od slajdów oryginalnych
-  let busy = false;             // blokada przy resetowaniu pętli
+  const visible = 2;
+  const total = data.length;
+  let index = visible;
+  let busy = false;
 
-  // Generator pojedynczego boxa
+  // Modal references
+  const modal = document.getElementById("ofertaModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalText = document.getElementById("modalText");
+  const modalClose = document.getElementById("modalClose");
+
+  // Utwórz slajd z funkcją otwierania modala
   function makeSlide(item) {
     const outer = document.createElement("div");
-    outer.className = "flex-shrink-0 w-1/2 px-3";
+    outer.className = "flex-shrink-0 w-1/2 px-3 cursor-pointer";
     outer.innerHTML = `
-      <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+      <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] hover:shadow-xl transition">
         <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
         <p class="text-lg text-gray-700">${item.text}</p>
       </div>`;
+    outer.addEventListener("click", () => openModal(item));
     return outer;
   }
 
-  // 1. Klony na lewo
-  data.slice(-visible).forEach(item => wrapper.appendChild(makeSlide(item)));
-  // 2. Oryginały
-  data.forEach(item => wrapper.appendChild(makeSlide(item)));
-  // 3. Klony na prawo
-  data.slice(0, visible).forEach(item => wrapper.appendChild(makeSlide(item)));
+  // Budowanie pętli slajdów: klony, oryginały, klony
+  data.slice(-visible).forEach(i => wrapper.appendChild(makeSlide(i)));
+  data.forEach(i => wrapper.appendChild(makeSlide(i)));
+  data.slice(0, visible).forEach(i => wrapper.appendChild(makeSlide(i)));
 
-  // Ustawienie początkowe
-  wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
+  wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
 
-  // Przycisk Wprzód / Wstecz
+  // Nawigacja
   document.getElementById("prevBtn").onclick = () => slideTo(index - 1);
   document.getElementById("nextBtn").onclick = () => slideTo(index + 1);
 
@@ -193,28 +218,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (busy) return;
     index = newIndex;
     wrapper.style.transition = "transform 2s linear";
-    wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
+    wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
   }
 
-  // Po zakończeniu przesunięcia sprawdzamy pętlę
-  wrapper.addEventListener("transitionend", (e) => {
+  wrapper.addEventListener("transitionend", e => {
     if (e.propertyName !== "transform") return;
-
-    // Zablokuj kolejne zdarzenia resetu
     busy = true;
     wrapper.style.transition = "none";
 
     if (index < visible) {
-      // przeskocz z lewych klonów na prawdziwe
       index += total;
-      wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
+      wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
     } else if (index >= total + visible) {
-      // przeskocz z prawych klonów na początek
       index -= total;
-      wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
+      wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
     }
 
-    // po krótkiej chwili przywróć animację
     setTimeout(() => {
       wrapper.style.transition = "transform 2s linear";
       busy = false;
@@ -223,10 +242,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Autoplay
   setInterval(() => slideTo(index + 1), 5000);
+
+  // Funkcje modala
+  function openModal(item) {
+    modalTitle.textContent = item.title;
+    modalText.textContent = item.text;
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+  }
+
+  modalClose.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  });
+
+  // Zamknięcie modala po kliknięciu poza treścią
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+  });
 });
 </script>
-
-
 
 
     <!-- Opinie -->
