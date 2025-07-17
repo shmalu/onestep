@@ -137,14 +137,7 @@
           <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
           <p class="text-gray-700">Opis przykładowej usługi.</p>
         </div>
-         <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 5</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
-        </div>
- <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 6</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
-        </div>
+        <!-- Dodaj więcej usług według potrzeby -->
       </div>
 
       <!-- Strzałka lewo -->
@@ -166,36 +159,36 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const items = Array.from(carousel.children);
-    const itemWidth = items[0].offsetWidth + 32; // szerokość plus odstęp
+    const itemWidth = items[0].offsetWidth + 32;
     let currentIndex = 0;
+    let auto = true;
+    const speed = 0.2; // px per frame, adjust for slower scroll
 
-    // Funkcja przejścia do indeksu z pętlą
     function goToIndex(index) {
       currentIndex = (index + items.length) % items.length;
       carousel.scrollTo({ left: currentIndex * itemWidth, behavior: 'smooth' });
     }
 
-    // Obsługa przycisków manualnych
-    prevBtn.addEventListener('click', () => goToIndex(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToIndex(currentIndex + 1));
+    // Manual click handlers: pause auto and navigate
+    function manual(direction) {
+      auto = false;
+      goToIndex(currentIndex + direction);
+      setTimeout(() => auto = true, 1000);
+    }
+    prevBtn.addEventListener('click', () => manual(-1));
+    nextBtn.addEventListener('click', () => manual(1));
 
-    // Ciągłe automatyczne przewijanie
-    let speed = 0.5; // px na klatkę (dostosuj dla wolniejszego/szybszego)
-    let isAuto = true;
-
+    // Auto-scroll loop
     function autoScroll() {
-      if (isAuto) carousel.scrollLeft += speed;
-      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-      if (carousel.scrollLeft >= maxScroll) carousel.scrollLeft = 0;
+      if (auto) {
+        carousel.scrollLeft += speed;
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (carousel.scrollLeft >= maxScroll) carousel.scrollLeft = 0;
+      }
       requestAnimationFrame(autoScroll);
     }
 
-    // Po kliknięciu przycisku pauzujemy auto na jedną iterację manualną
-    prevBtn.addEventListener('click', () => { isAuto = false; goToIndex(currentIndex - 1); setTimeout(() => isAuto = true, 1000); });
-    nextBtn.addEventListener('click', () => { isAuto = false; goToIndex(currentIndex + 1); setTimeout(() => isAuto = true, 1000); });
-
-    // Start automatycznego przewijania po załadowaniu strony
-    window.addEventListener('load', () => requestAnimationFrame(autoScroll));
+    window.addEventListener('load', autoScroll);
   </script>
 </section>
 
