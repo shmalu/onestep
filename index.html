@@ -17,45 +17,10 @@
   <!-- Feather Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- tsParticles -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
-
-      /* 1. Płynny gradient tła */
-      --hue: 0;
-      animation: hueRotate 20s linear infinite;
-      background: linear-gradient(
-        135deg,
-        hsl(var(--hue), 70%, 60%),
-        hsl(calc(var(--hue) + 60), 70%, 60%)
-      );
-    }
-    @keyframes hueRotate {
-      to { --hue: 360; }
-    }
-
-    /* 5. Parallax */
-    .parallax { background-attachment: fixed; background-size: cover; }
-
-    /* 3. Dynamiczny blob */
-    .blob {
-      position: absolute;
-      top: 10%;
-      right: 8%;
-      width: 300px;
-      height: 300px;
-      background: rgba(251,190,24,0.2);
-      border-radius: 50% 50% 60% 40%;
-      animation: blobAnim 8s ease-in-out infinite;
-      z-index: 0;
-    }
-    @keyframes blobAnim {
-      0%,100% { border-radius: 50% 50% 60% 40%; }
-      50%     { border-radius: 60% 30% 50% 60%; }
     }
 
     @keyframes fadeInUp {
@@ -98,14 +63,14 @@
       animation: pingOnce 1s ease-out 1;
     }
 
-    /* tilt hover */
+    /* tilt effect on hover */
     .tilt-hover:hover {
       transform: perspective(600px) rotateY(4deg) scale(1.02);
       transition: transform 0.5s ease;
     }
   </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-white text-gray-800">
 
   <!-- Header -->
   <header class="bg-white shadow-md fixed w-full z-20" data-aos="fade-down">
@@ -132,22 +97,20 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="parallax relative bg-[#FEF8ED] pt-32 pb-24 overflow-hidden">
-    <!-- 2. Cząstki w tle -->
-    <div id="particles-js" class="absolute inset-0 z-0"></div>
-
-    <!-- 3. Dynamiczny blob -->
-    <div class="blob"></div>
-
-    <div class="relative max-w-5xl mx-auto text-center px-6 animate-fadeInUp" style="z-index:1;">
+  <section class="relative bg-[#FEF8ED] pt-32 pb-24 overflow-hidden">
+    <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
+      <svg width="600" height="600" class="opacity-10 pulse-slow">
+        <circle cx="300" cy="300" r="200" fill="#FBBE18" />
+      </svg>
+    </div>
+    <div class="relative max-w-5xl mx-auto text-center px-6 animate-fadeInUp">
       <h2 class="text-5xl font-extrabold mb-6 text-[#FBBE18] drop-shadow-md">
         Zbuduj swoją markę razem z nami!
       </h2>
       <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
         Nowoczesne rozwiązania marketingowe dla Twojego biznesu.
       </p>
-      <a href="#contact"
-         class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
+      <a href="#contact" class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
         Skontaktuj się z nami
       </a>
     </div>
@@ -163,17 +126,23 @@
         <div data-aos="fade-up" data-aos-delay="100" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
           <i data-feather="target" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
           <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Strategia</h4>
-          <p class="text-gray-700 leading-relaxed">Spersonalizowane strategie marketingowe dopasowane do Twoich celów.</p>
+          <p class="text-gray-700 leading-relaxed">
+            Spersonalizowane strategie marketingowe dopasowane do Twoich celów.
+          </p>
         </div>
         <div data-aos="fade-up" data-aos-delay="200" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
           <i data-feather="cpu" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
           <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Technologia</h4>
-          <p class="text-gray-700 leading-relaxed">Najnowsze narzędzia i automatyzacja, aby zwiększyć efektywność.</p>
+          <p class="text-gray-700 leading-relaxed">
+            Najnowsze narzędzia i automatyzacja, aby zwiększyć efektywność.
+          </p>
         </div>
         <div data-aos="fade-up" data-aos-delay="300" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
           <i data-feather="headphones" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
           <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Wsparcie</h4>
-          <p class="text-gray-700 leading-relaxed">Pomoc techniczna i doradztwo dostępne na każdym etapie współpracy.</p>
+          <p class="text-gray-700 leading-relaxed">
+            Pomoc techniczna i doradztwo dostępne na każdym etapie współpracy.
+          </p>
         </div>
       </div>
     </div>
@@ -182,10 +151,12 @@
   <!-- Oferta Slider -->
   <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-12 text-gray-900" data-aos="fade-up">Nasza Oferta</h2>
+      <h2 class="text-4xl font-bold mb-12 text-gray-900" data-aos="fade-up">
+        Nasza Oferta
+      </h2>
       <div class="relative overflow-hidden">
         <div id="oferta-slides" class="flex" style="transition: transform 2s linear; will-change: transform;">
-          <!-- Slajdy generuje JS -->
+          <!-- slides generated by JS -->
         </div>
         <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100" aria-label="Poprzednia oferta">
           <i data-feather="chevron-left" class="w-6 h-6 text-[#FBBE18]"></i>
@@ -211,7 +182,9 @@
   <!-- Opinie -->
   <section id="opinions" class="py-24 bg-[#FEF8ED]">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight" data-aos="fade-up">Co mówią nasi klienci?</h3>
+      <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight" data-aos="fade-up">
+        Co mówią nasi klienci?
+      </h3>
       <div class="grid md:grid-cols-3 gap-10">
         <div data-aos="zoom-in" data-aos-delay="100" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
           <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
@@ -271,7 +244,7 @@
 
   <!-- Footer -->
   <footer class="bg-gray-100 py-8 mt-12">
-    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">&copy; 2025 One Step. Wszelkie prawa zastrzeżone.</div>
+    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">&copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.</div>
   </footer>
 
   <!-- Scripts -->
@@ -282,31 +255,133 @@
       AOS.init({ duration: 800, once: true });
       feather.replace();
 
-      // 2. Inicjalizacja tsParticles
-      tsParticles.load("particles-js", {
-        particles: {
-          number: { value: 40, density: { enable: true, area: 800 } },
-          color: { value: "#FBBE18" },
-          shape: { type: "circle" },
-          opacity: { value: 0.3 },
-          size: { value: 3 },
-          move: { enable: true, speed: 1, outModes: "out" }
-        },
-        interactivity: {
-          events: {
-            onHover: { enable: true, mode: "grab" },
-            onClick: { enable: false }
-          },
-          modes: { grab: { distance: 150, links: { opacity: 0.4 } } }
-        },
-        detectRetina: true
+      // Slider data & refs
+      const data = [
+        { title: "Usługa 1", text: "Rozbudowany opis usługi nr 1, pokazujący wszystkie zalety." },
+        { title: "Usługa 2", text: "Rozbudowany opis usługi nr 2, pokazujący wszystkie zalety." },
+        { title: "Usługa 3", text: "Rozbudowany opis usługi nr 3, pokazujący wszystkie zalety." },
+        { title: "Usługa 4", text: "Rozbudowany opis usługi nr 4, pokazujący wszystkie zalety." }
+      ];
+      const wrapper = document.getElementById("oferta-slides");
+      const visible = 2, total = data.length;
+      let index = visible, busy = false;
+
+      // Make slide
+      function makeSlide(item) {
+        const outer = document.createElement("div");
+        outer.className = "flex-shrink-0 w-1/2 px-3 cursor-pointer";
+        outer.setAttribute("data-aos", "fade-up");
+        outer.innerHTML = `
+          <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] hover:shadow-xl tilt-hover transition">
+            <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
+            <p class="text-lg text-gray-700">${item.text}</p>
+          </div>`;
+        outer.addEventListener("click", () => openModal(item));
+        return outer;
+      }
+
+      // Build looped slides
+      data.slice(-visible).forEach(i => wrapper.appendChild(makeSlide(i)));
+      data.forEach(i => wrapper.appendChild(makeSlide(i)));
+      data.slice(0, visible).forEach(i => wrapper.appendChild(makeSlide(i)));
+
+      wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+
+      // Nav
+      document.getElementById("prevBtn").onclick = () => slideTo(index - 1);
+      document.getElementById("nextBtn").onclick = () => slideTo(index + 1);
+
+      function slideTo(newIndex) {
+        if (busy) return;
+        index = newIndex;
+        wrapper.style.transition = "transform 2s linear";
+        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+      }
+
+      wrapper.addEventListener("transitionend", e => {
+        if (e.propertyName !== "transform") return;
+        busy = true;
+        wrapper.style.transition = "none";
+        if (index < visible) index += total;
+        else if (index >= total + visible) index -= total;
+        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+        setTimeout(() => {
+          wrapper.style.transition = "transform 2s linear";
+          busy = false;
+        }, 20);
       });
 
-      // …tutaj Twoje dotychczasowe skrypty slidera, modala, chatu…
-      // (Pozostaw bez zmian)
+      setInterval(() => slideTo(index + 1), 5000);
+
+      // Modal refs
+      const modal = document.getElementById("ofertaModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalText = document.getElementById("modalText");
+      const modalClose = document.getElementById("modalClose");
+
+      function openModal(item) {
+        modalTitle.textContent = item.title;
+        modalText.textContent = item.text;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+      modalClose.addEventListener("click", () => modal.classList.replace("flex","hidden"));
+      modal.addEventListener("click", e => { if (e.target===modal) modal.classList.replace("flex","hidden"); });
+
+      // Contact overlay
+      const contactLink = document.querySelector('a[href="#contact"]');
+      const contactSlide = document.getElementById('contactSlide');
+      const closeContact = document.getElementById('closeContact');
+      const overlay = document.getElementById('contactOverlay');
+      if (contactLink && contactSlide && overlay) {
+        contactLink.addEventListener('click', e => {
+          e.preventDefault();
+          if (contactSlide) contactSlide.classList.remove('scale-0');
+          overlay.classList.remove('hidden');
+        });
+        closeContact?.addEventListener('click', () => {
+          contactSlide.classList.add('scale-0');
+          overlay.classList.add('hidden');
+        });
+        overlay.addEventListener('click', () => {
+          contactSlide.classList.add('scale-0');
+          overlay.classList.add('hidden');
+        });
+      }
+
+      // Chat logic
+      const toggleBtn = document.getElementById('chatToggle');
+      const chatBox = document.getElementById('chatBox');
+      const closeBtn = document.getElementById('chatClose');
+      const chatForm = document.getElementById('chatForm');
+      const chatInput = document.getElementById('chatInput');
+      const chatMessages = document.getElementById('chatMessages');
+      setTimeout(() => {
+        toggleBtn.classList.add('ping-once');
+        chatBox.classList.remove('hidden');
+      }, 3000);
+      toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+      closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
+      chatForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+        const userBubble = document.createElement('div');
+        userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
+        userBubble.textContent = msg;
+        chatMessages.appendChild(userBubble);
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(() => {
+          const botBubble = document.createElement('div');
+          botBubble.className = 'bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto';
+          botBubble.textContent = "Dziękujemy! Odezwiemy się wkrótce.";
+          chatMessages.appendChild(botBubble);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+      });
     });
   </script>
-
 </body>
 </html>
 ```
