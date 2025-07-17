@@ -113,7 +113,6 @@
       </div>
     </section>
 
-<!-- Sekcja oferta z karuzelą i wyrównanymi strzałkami -->
 <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
   <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
     <h2 class="text-4xl font-bold mb-8 text-gray-900">Nasza Oferta</h2>
@@ -141,6 +140,7 @@
           <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
           <p class="text-gray-700">Opis przykładowej usługi.</p>
         </div>
+        <!-- Dodaj więcej usług według potrzeby -->
       </div>
 
       <!-- Strzałka lewo -->
@@ -161,21 +161,38 @@
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const itemWidth = carousel.querySelector('div').offsetWidth + 32;
+    const items = carousel.querySelectorAll('div');
+    const itemWidth = items[0].offsetWidth + 32; // szerokość plus odstęp
 
+    // Ręczne sterowanie
     prevBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
     });
-
     nextBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
     });
 
+    // Automatyczne przewijanie z pętlą
+    function autoScroll() {
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      if (carousel.scrollLeft >= maxScroll - 1) {
+        // skok na początek
+        carousel.scrollTo({ left: 0, behavior: 'auto' });
+      } else {
+        carousel.scrollBy({ left: 1, behavior: 'smooth' });
+      }
+    }
+    let scrollInterval = setInterval(autoScroll, 20); // dostosuj szybkość
+
+    // Pauza po najechaniu myszą
+    carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+    carousel.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScroll, 20));
+
+    // Zapobiegaj przewijaniu kółkiem i dotykiem
     carousel.addEventListener('wheel', e => e.preventDefault());
     carousel.addEventListener('touchmove', e => e.preventDefault());
   </script>
 </section>
-
 
 
 
