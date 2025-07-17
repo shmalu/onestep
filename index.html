@@ -113,22 +113,19 @@
       </div>
     </section>
 
-<!-- Sekcja oferta jako slider z płynną pętlą i dwoma slajdami obok siebie -->
 <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-4xl font-bold mb-12 text-gray-900">Nasza Oferta</h2>
 
     <div class="relative overflow-hidden">
-      <!-- Kontener slajdów -->
       <div
         id="oferta-slides"
-        class="flex ease-linear"
-        style="transition: transform 2s linear;"
+        class="flex"
+        style="transition: transform 2s linear; will-change: transform;"
       >
-        <!-- (Wypełniamy slajdy w JS – oryginalne i klony) -->
+        <!-- Slajdy wstawiamy JS-em -->
       </div>
 
-      <!-- Strzałki nawigacyjne -->
       <button
         id="prevBtn"
         class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"
@@ -152,75 +149,83 @@
 </section>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const data = [
-      { title: "Usługa 1", text: "Opis przykładowej usługi." },
-      { title: "Usługa 2", text: "Opis przykładowej usługi." },
-      { title: "Usługa 3", text: "Opis przykładowej usługi." },
-      { title: "Usługa 4", text: "Opis przykładowej usługi." },
-    ];
+document.addEventListener("DOMContentLoaded", () => {
+  const data = [
+    { title: "Usługa 1", text: "Rozbudowany opis usługi nr 1, pokazujący wszystkie zalety." },
+    { title: "Usługa 2", text: "Rozbudowany opis usługi nr 2, pokazujący wszystkie zalety." },
+    { title: "Usługa 3", text: "Rozbudowany opis usługi nr 3, pokazujący wszystkie zalety." },
+    { title: "Usługa 4", text: "Rozbudowany opis usługi nr 4, pokazujący wszystkie zalety." }
+  ];
 
-    const slidesWrapper = document.getElementById("oferta-slides");
-    const visibleSlides = 2;        // ile boxów pokazujemy na raz
-    const total = data.length;      // liczba oryginalnych slajdów
-    let currentIndex = visibleSlides;
+  const wrapper = document.getElementById("oferta-slides");
+  const visible = 2;            // wyświetlamy 2 slajdy
+  const total = data.length;    // oryginalna liczba slajdów
+  let index = visible;          // startujemy od slajdów oryginalnych
+  let busy = false;             // blokada przy resetowaniu pętli
 
-    // Funkcja generująca pojedynczy slajd
-    function makeSlide(item) {
-      const outer = document.createElement("div");
-      outer.className = "flex-shrink-0 w-1/2 px-3";
-      outer.innerHTML = `
-        <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-          <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
-          <p class="text-lg text-gray-700">${item.text}</p>
-        </div>`;
-      return outer;
+  // Generator pojedynczego boxa
+  function makeSlide(item) {
+    const outer = document.createElement("div");
+    outer.className = "flex-shrink-0 w-1/2 px-3";
+    outer.innerHTML = `
+      <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+        <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
+        <p class="text-lg text-gray-700">${item.text}</p>
+      </div>`;
+    return outer;
+  }
+
+  // 1. Klony na lewo
+  data.slice(-visible).forEach(item => wrapper.appendChild(makeSlide(item)));
+  // 2. Oryginały
+  data.forEach(item => wrapper.appendChild(makeSlide(item)));
+  // 3. Klony na prawo
+  data.slice(0, visible).forEach(item => wrapper.appendChild(makeSlide(item)));
+
+  // Ustawienie początkowe
+  wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
+
+  // Przycisk Wprzód / Wstecz
+  document.getElementById("prevBtn").onclick = () => slideTo(index - 1);
+  document.getElementById("nextBtn").onclick = () => slideTo(index + 1);
+
+  function slideTo(newIndex) {
+    if (busy) return;
+    index = newIndex;
+    wrapper.style.transition = "transform 2s linear";
+    wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
+  }
+
+  // Po zakończeniu przesunięcia sprawdzamy pętlę
+  wrapper.addEventListener("transitionend", (e) => {
+    if (e.propertyName !== "transform") return;
+
+    // Zablokuj kolejne zdarzenia resetu
+    busy = true;
+    wrapper.style.transition = "none";
+
+    if (index < visible) {
+      // przeskocz z lewych klonów na prawdziwe
+      index += total;
+      wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
+    } else if (index >= total + visible) {
+      // przeskocz z prawych klonów na początek
+      index -= total;
+      wrapper.style.transform = `translateX(-${(100/visible) * index}%)`;
     }
 
-    // 1. Dodaj klony ostatnich visibleSlides
-    data.slice(-visibleSlides).forEach(item => slidesWrapper.appendChild(makeSlide(item)));
-    // 2. Dodaj oryginalne
-    data.forEach(item => slidesWrapper.appendChild(makeSlide(item)));
-    // 3. Dodaj klony pierwszych visibleSlides
-    data.slice(0, visibleSlides).forEach(item => slidesWrapper.appendChild(makeSlide(item)));
-
-    // Ustaw startowy offset (przesuwamy o width * visibleSlides)
-    const shift = (100 / visibleSlides) * currentIndex;
-    slidesWrapper.style.transform = `translateX(-${shift}%)`;
-
-    // Strzałki
-    document.getElementById("prevBtn").onclick = () => moveTo(currentIndex - 1);
-    document.getElementById("nextBtn").onclick = () => moveTo(currentIndex + 1);
-
-    function moveTo(idx) {
-      currentIndex = idx;
-      slidesWrapper.style.transform = `translateX(-${(100 / visibleSlides) * currentIndex}%)`;
-    }
-
-    // Po zakończeniu każdej animacji – koryguj indeksy w pętli
-    slidesWrapper.addEventListener("transitionend", () => {
-      // jeżeli przed pierwszymi: przesuwamy na "koniec" (klony → prawdziwe)
-      if (currentIndex < visibleSlides) {
-        slidesWrapper.style.transition = "none";
-        currentIndex += total;
-        slidesWrapper.style.transform = `translateX(-${(100 / visibleSlides) * currentIndex}%)`;
-      }
-      // jeżeli za ostatnimi: przesuwamy na "początek"
-      if (currentIndex >= total + visibleSlides) {
-        slidesWrapper.style.transition = "none";
-        currentIndex -= total;
-        slidesWrapper.style.transform = `translateX(-${(100 / visibleSlides) * currentIndex}%)`;
-      }
-      // przywróć płynną animację
-      requestAnimationFrame(() => {
-        slidesWrapper.style.transition = "transform 2s linear";
-      });
-    });
-
-    // Automatyczne przesuwanie co 5 sekund
-    setInterval(() => moveTo(currentIndex + 1), 5000);
+    // po krótkiej chwili przywróć animację
+    setTimeout(() => {
+      wrapper.style.transition = "transform 2s linear";
+      busy = false;
+    }, 20);
   });
+
+  // Autoplay
+  setInterval(() => slideTo(index + 1), 5000);
+});
 </script>
+
 
 
 
