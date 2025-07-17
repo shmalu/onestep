@@ -113,79 +113,38 @@
       </div>
     </section>
 
+<!-- Sekcja oferta -->
 <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
   <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
     <h2 class="text-4xl font-bold mb-12 text-gray-900">Nasza Oferta</h2>
 
-    <div class="relative overflow-hidden">
-      <!-- Slider wrapper -->
-      <div id="slider" class="flex transition-transform duration-700 ease-in-out w-[200%]">
-        <!-- Slide 1 -->
-        <div class="w-1/2 px-4 shrink-0">
-          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
-            <p class="text-gray-700">Opis przykładowej usługi.</p>
-          </div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="w-1/2 px-4 shrink-0">
-          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
-            <p class="text-gray-700">Opis przykładowej usługi.</p>
-          </div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="w-1/2 px-4 shrink-0">
-          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
-            <p class="text-gray-700">Opis przykładowej usługi.</p>
-          </div>
-        </div>
-        <!-- Slide 4 -->
-        <div class="w-1/2 px-4 shrink-0">
-          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
-            <p class="text-gray-700">Opis przykładowej usługi.</p>
-          </div>
-        </div>
+    <div class="grid md:grid-cols-3 gap-10">
+      <!-- Produkt 1 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-[#FBBE18] transition duration-300">
+        <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
+        <p class="text-gray-700">Opis przykładowej usługi.</p>
       </div>
 
-      <!-- Navigation Arrows -->
-      <button id="prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-[#FBBE18] text-white p-3 rounded-full shadow-md hover:bg-[#faae00] transition">
-        &#10094;
-      </button>
-      <button id="next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-[#FBBE18] text-white p-3 rounded-full shadow-md hover:bg-[#faae00] transition">
-        &#10095;
-      </button>
+      <!-- Produkt 2 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-[#FBBE18] transition duration-300">
+        <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
+        <p class="text-gray-700">Opis przykładowej usługi.</p>
+      </div>
+
+      <!-- Produkt 3 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-[#FBBE18] transition duration-300">
+        <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
+        <p class="text-gray-700">Opis przykładowej usługi.</p>
+      </div>
+
+      <!-- Produkt 4 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-[#FBBE18] transition duration-300">
+        <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
+        <p class="text-gray-700">Opis przykładowej usługi.</p>
+      </div>
     </div>
   </div>
 </section>
-
-<script>
-  const slider = document.getElementById("slider");
-  const nextBtn = document.getElementById("next");
-  const prevBtn = document.getElementById("prev");
-  const slidesPerView = 2;
-  const totalSlides = slider.children.length;
-  const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
-  let currentIndex = 0;
-
-  function updateSlide(index) {
-    currentIndex = (index + maxIndex + 1) % (maxIndex + 1);
-    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-
-  nextBtn.addEventListener("click", () => updateSlide(currentIndex + 1));
-  prevBtn.addEventListener("click", () => updateSlide(currentIndex - 1));
-
-  // Auto-slide
-  setInterval(() => {
-    updateSlide(currentIndex + 1);
-  }, 5000);
-</script>
-
-
-
     <!-- Opinie -->
     <section id="opinions" class="py-24 bg-[#FEF8ED]">
       <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
