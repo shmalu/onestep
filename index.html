@@ -68,17 +68,32 @@
       transform: perspective(600px) rotateY(4deg) scale(1.02);
       transition: transform 0.5s ease;
     }
-/* Responsywna typografia */
-h2 { font-size: 2.5rem; }
+/* Responsywna typografia hero */
+h2 {
+  font-size: 2.5rem;
+}
 @media (min-width: 768px) {
-  h2 { font-size: 5rem; }
+  h2 {
+    font-size: 5rem;
+  }
 }
 
-/* Nawigacja flex-wrap */
-header nav { flex-wrap: wrap; }
-header nav a { margin-bottom: 0.5rem; }
+/* Nawigacja: wrap + zachowaj odstępy */
+header nav {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+header nav a {
+  flex-shrink: 0;
+  min-width: 120px;
+}
 
-/* Carousel: 1 slide na telefon */
+/* Z-index nagłówka */
+header {
+  z-index: 1000;
+}
+
+/* Carousel: 1 slide na telefon, 2 na desktop */
 #oferta-slides > div {
   flex: 0 0 100%;
 }
@@ -88,14 +103,34 @@ header nav a { margin-bottom: 0.5rem; }
   }
 }
 
-/* Formularz i button */
-form input, form textarea, form button { width: 100%; }
+/* Przesunięcie slidera, żeby nie nachodził na sekcje nad nim */
+#oferta {
+  margin-top: 50px;
+}
+
+/* Formularz i button pełna szerokość */
+form input,
+form textarea,
+form button {
+  width: 100%;
+}
+
+/* Chatbox responsywny */
+#chatBox {
+  width: 80%;
+  max-width: 300px;
+}
 
 /* Sticky CTA */
-#stickyCTA { display: none; }
-@media (min-width: 640px) {
-  #stickyCTA { display: flex; }
+#stickyCTA {
+  display: none;
 }
+@media (min-width: 640px) {
+  #stickyCTA {
+    display: flex;
+  }
+}
+
   </style>
 </head>
 <body class="bg-white text-gray-800">
