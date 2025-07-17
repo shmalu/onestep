@@ -143,13 +143,13 @@
       <!-- Strzałka lewo -->
       <button id="prevBtn" aria-label="Poprzednia oferta"
         class="absolute top-1/2 left-0 transform -translate-y-1/2 -ml-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
-        &#10094;
+        ❮
       </button>
 
       <!-- Strzałka prawo -->
       <button id="nextBtn" aria-label="Następna oferta"
         class="absolute top-1/2 right-0 transform -translate-y-1/2 -mr-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
-        &#10095;
+        ❯
       </button>
     </div>
   </div>
@@ -168,21 +168,25 @@
       carousel.scrollTo({ left: currentIndex * itemWidth, behavior: 'smooth' });
     }
 
-    // Obsługa przycisków
+    // Obsługa przycisków manualnych
     prevBtn.addEventListener('click', () => goToIndex(currentIndex - 1));
     nextBtn.addEventListener('click', () => goToIndex(currentIndex + 1));
 
     // Ciągłe automatyczne przewijanie
     let speed = 0.5; // px na klatkę (dostosuj dla wolniejszego/szybszego)
+    let isAuto = true;
+
     function autoScroll() {
-      carousel.scrollLeft += speed;
-      // gdy dojdziemy do końca, zawijamy
+      if (isAuto) carousel.scrollLeft += speed;
       const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-      if (carousel.scrollLeft >= maxScroll) {
-        carousel.scrollLeft = 0;
-      }
+      if (carousel.scrollLeft >= maxScroll) carousel.scrollLeft = 0;
       requestAnimationFrame(autoScroll);
     }
+
+    // Po kliknięciu przycisku pauzujemy auto na jedną iterację manualną
+    prevBtn.addEventListener('click', () => { isAuto = false; goToIndex(currentIndex - 1); setTimeout(() => isAuto = true, 1000); });
+    nextBtn.addEventListener('click', () => { isAuto = false; goToIndex(currentIndex + 1); setTimeout(() => isAuto = true, 1000); });
+
     // Start automatycznego przewijania po załadowaniu strony
     window.addEventListener('load', () => requestAnimationFrame(autoScroll));
   </script>
