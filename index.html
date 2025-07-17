@@ -68,6 +68,21 @@
       transform: perspective(600px) rotateY(4deg) scale(1.02);
       transition: transform 0.5s ease;
     }
+/* 1. Przywróć oryginalną szerokość boxa czatu (w-80 = 20rem) */
+#chatBox {
+  width: 20rem !important;
+  max-width: none !important;
+}
+
+/* 2. Przesuń cały przycisk otwierający czat nieco w lewą stronę */
+#chatToggle {
+  margin-right: 0.5rem;
+}
+
+/* 3. Odsuń przycisk „Wyślij” wewnątrz czatu, żeby nie dotykał krawędzi */
+#chatForm button[type="submit"] {
+  margin-right: 0.5rem;
+}
   </style>
 </head>
 <body class="bg-white text-gray-800">
