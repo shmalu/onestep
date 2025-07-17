@@ -113,101 +113,74 @@
       </div>
     </section>
 
-<section id="oferta">
-  <div class="slider-container">
-    <button class="arrow left">&#10094;</button>
-    <div class="slider">
-      <div class="slide">
-        <img src="oferta1.jpg" alt="Oferta 1">
-        <p>Opis oferty 1</p>
+<section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
+  <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
+    <h2 class="text-4xl font-bold mb-12 text-gray-900">Nasza Oferta</h2>
+
+    <div class="relative overflow-hidden">
+      <!-- Slider wrapper -->
+      <div id="slider" class="flex transition-transform duration-700 ease-in-out">
+        <!-- Slide 1 -->
+        <div class="min-w-full px-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="min-w-full px-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="min-w-full px-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="min-w-full px-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
+        </div>
       </div>
-      <div class="slide">
-        <img src="oferta2.jpg" alt="Oferta 2">
-        <p>Opis oferty 2</p>
-      </div>
-      <div class="slide">
-        <img src="oferta3.jpg" alt="Oferta 3">
-        <p>Opis oferty 3</p>
-      </div>
-      <!-- Dodaj więcej slajdów jeśli chcesz -->
+
+      <!-- Navigation Arrows -->
+      <button id="prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-[#FBBE18] text-white p-3 rounded-full shadow-md hover:bg-[#faae00] transition">
+        &#10094;
+      </button>
+      <button id="next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-[#FBBE18] text-white p-3 rounded-full shadow-md hover:bg-[#faae00] transition">
+        &#10095;
+      </button>
     </div>
-    <button class="arrow right">&#10095;</button>
   </div>
 </section>
 
-<style>
-  .slider-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    overflow: hidden;
-  }
-
-  .slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .slide {
-    min-width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-  }
-
-  .slide img {
-    width: 100%;
-    height: auto;
-  }
-
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-  }
-
-  .arrow.left {
-    left: 10px;
-  }
-
-  .arrow.right {
-    right: 10px;
-  }
-</style>
-
 <script>
-  const slider = document.querySelector('.slider');
-  const slides = document.querySelectorAll('.slide');
-  const prevBtn = document.querySelector('.arrow.left');
-  const nextBtn = document.querySelector('.arrow.right');
+  const slider = document.getElementById("slider");
+  const nextBtn = document.getElementById("next");
+  const prevBtn = document.getElementById("prev");
+  const slidesCount = slider.children.length;
   let currentIndex = 0;
 
-  function showSlide(index) {
-    const totalSlides = slides.length;
-    currentIndex = (index + totalSlides) % totalSlides;
+  function updateSlide(index) {
+    currentIndex = (index + slidesCount) % slidesCount;
     slider.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
-  prevBtn.addEventListener('click', () => {
-    showSlide(currentIndex - 1);
-  });
+  nextBtn.addEventListener("click", () => updateSlide(currentIndex + 1));
+  prevBtn.addEventListener("click", () => updateSlide(currentIndex - 1));
 
-  nextBtn.addEventListener('click', () => {
-    showSlide(currentIndex + 1);
-  });
-
-  // Automatyczne przesuwanie
+  // Auto-slide
   setInterval(() => {
-    showSlide(currentIndex + 1);
-  }, 5000); // zmień wartość jeśli chcesz inną prędkość
+    updateSlide(currentIndex + 1);
+  }, 5000);
 </script>
-
 
     <!-- Opinie -->
     <section id="opinions" class="py-24 bg-[#FEF8ED]">
