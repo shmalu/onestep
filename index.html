@@ -119,7 +119,7 @@
 
     <div class="relative">
       <!-- Kontener karuzeli -->
-      <div id="carousel" class="flex space-x-8 overflow-hidden px-12" tabindex="0">
+      <div id="carousel" class="flex space-x-8 overflow-hidden px-12">
         <!-- Produkt 1 -->
         <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
           <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
@@ -161,27 +161,32 @@
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const items = carousel.querySelectorAll(':scope > div');
+    const items = carousel.children;
     const itemWidth = items[0].offsetWidth + 32; // szerokość plus odstęp
 
-    // Ręczne sterowanie przyciskami
-    prevBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-    });
-    nextBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
-    });
+    // Funkcja pojedynczego scrollu
+    const scrollPrev = () => carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+    const scrollNext = () => carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
 
-    // Sterowanie strzałkami klawiatury
-    window.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        prevBtn.click();
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        nextBtn.click();
-      }
-    });
+    // Obsługa kliknięcia
+    prevBtn.addEventListener('click', scrollPrev);
+    nextBtn.addEventListener('click', scrollNext);
+
+    // Obsługa przytrzymania przycisku (ciągłe przewijanie)
+    let holdInterval;
+    const startHold = (directionFn) => {
+      directionFn();
+      holdInterval = setInterval(directionFn, 200);
+    };
+    const stopHold = () => clearInterval(holdInterval);
+
+    prevBtn.addEventListener('mousedown', () => startHold(scrollPrev));
+    nextBtn.addEventListener('mousedown', () => startHold(scrollNext));
+    document.addEventListener('mouseup', stopHold);
+    // Dotyk na urządzeniach mobilnych
+    prevBtn.addEventListener('touchstart', () => startHold(scrollPrev));
+    nextBtn.addEventListener('touchstart', () => startHold(scrollNext));
+    document.addEventListener('touchend', stopHold);
 
     // Automatyczne przewijanie z pętlą
     function autoScroll() {
@@ -192,20 +197,17 @@
         carousel.scrollBy({ left: 1, behavior: 'smooth' });
       }
     }
-    let scrollInterval = setInterval(autoScroll, 20); // dostosuj szybkość
+    let scrollInterval = setInterval(autoScroll, 20);
 
     // Pauza po najechaniu myszą
     carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
     carousel.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScroll, 20));
 
-    // Zapobiegaj przewijaniu kółkiem i dotykiem
+    // Wyłączenie scrolla kółkiem i dotykiem
     carousel.addEventListener('wheel', e => e.preventDefault());
     carousel.addEventListener('touchmove', e => e.preventDefault());
   </script>
 </section>
-
-
-
 
     <!-- Opinie -->
     <section id="opinions" class="py-24 bg-[#FEF8ED]">
