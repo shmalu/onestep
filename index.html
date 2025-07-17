@@ -164,7 +164,7 @@
     const items = carousel.querySelectorAll('div');
     const itemWidth = items[0].offsetWidth + 32; // szerokość plus odstęp
 
-    // Ręczne sterowanie
+    // Ręczne sterowanie przyciskami
     prevBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
     });
@@ -172,11 +172,19 @@
       carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
     });
 
+    // Sterowanie strzałkami klawiatury
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') {
+        prevBtn.click();
+      } else if (e.key === 'ArrowRight') {
+        nextBtn.click();
+      }
+    });
+
     // Automatyczne przewijanie z pętlą
     function autoScroll() {
       const maxScroll = carousel.scrollWidth - carousel.clientWidth;
       if (carousel.scrollLeft >= maxScroll - 1) {
-        // skok na początek
         carousel.scrollTo({ left: 0, behavior: 'auto' });
       } else {
         carousel.scrollBy({ left: 1, behavior: 'smooth' });
