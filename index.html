@@ -1,167 +1,173 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Step</title>
+  <title>One Step – marketing 2.0</title>
 
-  <!-- TailwindCSS -->
+  <!-- SEO & Social -->
+  <meta name="description" content="Nowoczesne rozwiązania marketingowe: strategia, technologia i wsparcie." />
+  <meta property="og:title" content="One Step – rozwijaj markę" />
+  <meta property="og:description" content="Nowoczesne rozwiązania marketingowe dla Twojego biznesu." />
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+  <meta property="og:url" content="https://one-step.example.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD dla LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"MarketingAgency",
+    "name":"One Step",
+    "url":"https://one-step.example.com",
+    "logo":"https://one-step.example.com/logoOS.png",
+    "sameAs":[
+      "https://facebook.com/one-step",
+      "https://linkedin.com/company/one-step"
+    ]
+  }
+  </script>
+
+  <!-- Preload font, Tailwind, AOS, Feather -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" as="style" onload="this.rel='stylesheet'" />
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <!-- AOS CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <!-- Feather Icons -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-    }
+  <!-- Google Optimize (A/B testing) -->
+  <script src="https://www.googleoptimize.com/optimize.js?id=OPT-XXXXXX"></script>
 
+  <style>
+    body { font-family:'Inter',sans-serif; scroll-behavior:smooth; }
+    /* Tryb ciemny */
+    .dark body { background:#111; color:#eee; }
+    .dark .bg-white { background:#222 !important; }
+    .dark .text-gray-700 { color:#ccc !important; }
+    /* Sticky header shrink */
+    header { transition:padding .3s, box-shadow .3s; }
+    .shrink { padding:0.5rem 1.5rem !important; box-shadow:0 2px 8px rgba(0,0,0,.4); }
+    /* Parallax hero */
+    .parallax { background-attachment:fixed; background-size:cover; }
+    /* Animacje własne */
     @keyframes fadeInUp {
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    .animate-fadeInUp {
-      animation: fadeInUp 0.8s ease forwards;
-    }
+    .animate-fadeInUp { animation:fadeInUp .8s ease forwards; }
 
     @keyframes pulseSlow {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.5);
-      }
-      50% {
-        transform: scale(1.02);
-        box-shadow: 0 0 10px 6px rgba(251, 190, 24, 0.3);
-      }
+      0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(251,190,24,.5); }
+      50%{ transform:scale(1.02); box-shadow:0 0 10px 6px rgba(251,190,24,.3); }
     }
-    .pulse-slow {
-      animation: pulseSlow 3s ease-in-out infinite;
-    }
+    .pulse-slow { animation:pulseSlow 3s ease-in-out infinite; }
 
     @keyframes pingOnce {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.6);
-      }
-      70% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 10px rgba(251, 190, 24, 0);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0);
-      }
+      0%{ transform:scale(1); box-shadow:0 0 0 0 rgba(251,190,24,.6); }
+      70%{ transform:scale(1.1); box-shadow:0 0 0 10px rgba(251,190,24,0); }
+      100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(251,190,24,0); }
     }
-    .ping-once {
-      animation: pingOnce 1s ease-out 1;
-    }
+    .ping-once { animation:pingOnce 1s ease-out 1; }
 
-    /* tilt effect on hover */
+    /* tilt na hover */
     .tilt-hover:hover {
-      transform: perspective(600px) rotateY(4deg) scale(1.02);
-      transition: transform 0.5s ease;
+      transform:perspective(600px) rotateY(4deg) scale(1.02);
+      transition:transform .5s ease;
     }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
-  <!-- Header -->
-  <header class="bg-white shadow-md fixed w-full z-20" data-aos="fade-down">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-3">
-        <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto" />
-        <span class="text-2xl font-extrabold text-[#FBBE18] select-none">One Step</span>
-      </div>
-      <nav class="space-x-4 font-medium text-gray-700 flex items-center">
-        <a href="#oferta" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
-        </a>
-        <a href="#features" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="bar-chart-2" class="w-4 h-4 mr-2"></i>Dlaczego warto?
-        </a>
-        <a href="#opinions" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="users" class="w-4 h-4 mr-2"></i>Opinie
-        </a>
-        <a href="#contact" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="mail" class="w-4 h-4 mr-2"></i>Kontakt
-        </a>
+  <!-- Dark Mode Toggle -->
+  <button id="darkToggle" aria-label="Toggle Dark Mode"
+    class="fixed top-4 right-4 bg-[#FBBE18] dark:bg-gray-700 p-2 rounded-full z-50">
+    <i data-feather="sun" class="w-5 h-5"></i>
+  </button>
+
+  <!-- Nagłówek -->
+  <header class="bg-white dark:bg-gray-800 fixed w-full z-30 px-6 py-4" data-aos="fade-down">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <img src="logoOS.png" alt="One Step logo" class="h-8 w-auto" loading="lazy" />
+        <span class="font-extrabold text-[#FBBE18] dark:text-yellow-400 select-none">One Step</span>
+      </a>
+      <nav class="space-x-3 font-medium">
+        <a href="#oferta" class="px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Oferta</a>
+        <a href="#features" class="px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Dlaczego warto?</a>
+        <a href="#opinions" class="px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Opinie</a>
+        <a href="#contact" class="px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Kontakt</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="relative bg-[#FEF8ED] pt-32 pb-24 overflow-hidden">
-    <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
-      <svg width="600" height="600" class="opacity-10 pulse-slow">
-        <circle cx="300" cy="300" r="200" fill="#FBBE18" />
-      </svg>
+  <!-- Hero z paralaksą i Lottie -->
+  <section id="hero" class="parallax bg-[#FEF8ED] pt-28 pb-24 overflow-hidden">
+    <div class="absolute inset-0 flex items-center justify-center opacity-20">
+      <lottie-player
+        src="https://assets10.lottiefiles.com/packages/lf20_tOJBPM.json"
+        background="transparent" speed="0.5" loop autoplay
+        style="width:600px;height:600px;"></lottie-player>
     </div>
-    <div class="relative max-w-5xl mx-auto text-center px-6 animate-fadeInUp">
-      <h2 class="text-5xl font-extrabold mb-6 text-[#FBBE18] drop-shadow-md">
-        Zbuduj swoją markę razem z nami!
-      </h2>
-      <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
-        Nowoczesne rozwiązania marketingowe dla Twojego biznesu.
-      </p>
-      <a href="#contact" class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
+    <div class="relative max-w-4xl mx-auto text-center px-6 animate-fadeInUp">
+      <h1 class="text-5xl font-extrabold mb-4">Witaj, <span id="utmName"></span>!</h1>
+      <p class="text-xl mb-8">Nowoczesne rozwiązania marketingowe dla Twojego biznesu.</p>
+      <a href="#contact"
+         class="bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow hover:bg-[#e0a917] transition">
         Skontaktuj się z nami
       </a>
     </div>
   </section>
 
-  <!-- Features -->
-  <section id="features" class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight" data-aos="fade-up">
-        Dlaczego warto?
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div data-aos="fade-up" data-aos-delay="100" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
-          <i data-feather="target" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
-          <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Strategia</h4>
-          <p class="text-gray-700 leading-relaxed">
-            Spersonalizowane strategie marketingowe dopasowane do Twoich celów.
-          </p>
+  <!-- Sekcja “Dlaczego warto?” z Lottie -->
+  <section id="features" class="py-24 bg-white dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto text-center px-6">
+      <h2 class="text-4xl font-bold mb-12" data-aos="fade-up">Dlaczego warto?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div data-aos="fade-up" data-aos-delay="100" class="p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl tilt-hover">
+          <lottie-player
+            src="https://assets1.lottiefiles.com/packages/lf20_k9ktrbsh.json"
+            background="transparent" speed="1" loop autoplay
+            class="w-24 h-24 mx-auto mb-4"></lottie-player>
+          <h3 class="text-2xl font-semibold mb-2">Strategia</h3>
+          <p>Spersonalizowane plany marketingowe skrojone na miarę Twoich celów.</p>
         </div>
-        <div data-aos="fade-up" data-aos-delay="200" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
-          <i data-feather="cpu" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
-          <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Technologia</h4>
-          <p class="text-gray-700 leading-relaxed">
-            Najnowsze narzędzia i automatyzacja, aby zwiększyć efektywność.
-          </p>
+        <div data-aos="fade-up" data-aos-delay="200" class="p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl tilt-hover">
+          <lottie-player
+            src="https://assets1.lottiefiles.com/packages/lf20_4ktk2nuu.json"
+            background="transparent" speed="1" loop autoplay
+            class="w-24 h-24 mx-auto mb-4"></lottie-player>
+          <h3 class="text-2xl font-semibold mb-2">Technologia</h3>
+          <p>Automatyzacja, AI i nowoczesne narzędzia – wszystko pod jednym dachem.</p>
         </div>
-        <div data-aos="fade-up" data-aos-delay="300" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
-          <i data-feather="headphones" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
-          <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Wsparcie</h4>
-          <p class="text-gray-700 leading-relaxed">
-            Pomoc techniczna i doradztwo dostępne na każdym etapie współpracy.
-          </p>
+        <div data-aos="fade-up" data-aos-delay="300" class="p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl tilt-hover">
+          <lottie-player
+            src="https://assets1.lottiefiles.com/packages/lf20_5ngs2ksw.json"
+            background="transparent" speed="1" loop autoplay
+            class="w-24 h-24 mx-auto mb-4"></lottie-player>
+          <h3 class="text-2xl font-semibold mb-2">Wsparcie</h3>
+          <p>Stały kontakt, doradztwo i szybka reakcja na Twoje potrzeby.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Oferta Slider -->
+  <!-- Sekcja Oferta (slider) -->
   <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <h2 class="text-4xl font-bold mb-12 text-gray-900" data-aos="fade-up">
         Nasza Oferta
       </h2>
       <div class="relative overflow-hidden">
-        <div id="oferta-slides" class="flex" style="transition: transform 2s linear; will-change: transform;">
-          <!-- slides generated by JS -->
+        <div id="oferta-slides" class="flex" style="transition:transform 2s linear;will-change:transform;">
+          <!-- wsuwane slajdy w JS -->
         </div>
-        <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100" aria-label="Poprzednia oferta">
+        <button id="prevBtn"
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"
+                aria-label="Poprzednia oferta">
           <i data-feather="chevron-left" class="w-6 h-6 text-[#FBBE18]"></i>
         </button>
-        <button id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100" aria-label="Następna oferta">
+        <button id="nextBtn"
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"
+                aria-label="Następna oferta">
           <i data-feather="chevron-right" class="w-6 h-6 text-[#FBBE18]"></i>
         </button>
       </div>
@@ -169,9 +175,13 @@
   </section>
 
   <!-- Modal oferty -->
-  <div id="ofertaModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50" data-aos="zoom-in">
+  <div id="ofertaModal"
+       class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50"
+       data-aos="zoom-in">
     <div class="bg-white p-8 rounded-2xl shadow-lg border-4 border-[#FBBE18] max-w-xl w-full relative mx-4">
-      <button id="modalClose" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" aria-label="Zamknij">
+      <button id="modalClose"
+              class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              aria-label="Zamknij">
         <i data-feather="x" class="w-6 h-6"></i>
       </button>
       <h3 id="modalTitle" class="text-3xl font-semibold text-[#FBBE18] mb-4"></h3>
@@ -180,40 +190,42 @@
   </div>
 
   <!-- Opinie -->
-  <section id="opinions" class="py-24 bg-[#FEF8ED]">
+  <section id="opinions" class="py-24 bg-[#FEF8ED] dark:bg-gray-800">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight" data-aos="fade-up">
-        Co mówią nasi klienci?
-      </h3>
-      <div class="grid md:grid-cols-3 gap-10">
-        <div data-aos="zoom-in" data-aos-delay="100" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
-          <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
-          <p class="italic text-gray-700 text-lg">"Nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
-          <div class="mt-6 font-semibold text-[#FBBE18]">— Anna</div>
+      <h2 class="text-4xl font-bold mb-12" data-aos="fade-up">Opinie klientów</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div data-aos="zoom-in" data-aos-delay="100" class="p-6 bg-white dark:bg-gray-700 rounded-2xl pulse-slow">
+          <blockquote class="italic">"Sprzedaż +40% w 3 miesiące!"</blockquote>
+          <p class="mt-4 font-semibold">— Anna</p>
         </div>
-        <div data-aos="zoom-in" data-aos-delay="200" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
-          <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
-          <p class="italic text-gray-700 text-lg">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
-          <div class="mt-6 font-semibold text-[#FBBE18]">— Michał</div>
+        <div data-aos="zoom-in" data-aos-delay="200" class="p-6 bg-white dark:bg-gray-700 rounded-2xl pulse-slow">
+          <blockquote class="italic">"Profesjonalizm i realne wyniki."</blockquote>
+          <p class="mt-4 font-semibold">— Michał</p>
         </div>
-        <div data-aos="zoom-in" data-aos-delay="300" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
-          <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
-          <p class="italic text-gray-700 text-lg">"Świetna obsługa klienta i szybka realizacja usług."</p>
-          <div class="mt-6 font-semibold text-[#FBBE18]">— Katarzyna</div>
+        <div data-aos="zoom-in" data-aos-delay="300" class="p-6 bg-white dark:bg-gray-700 rounded-2xl pulse-slow">
+          <blockquote class="italic">"Świetna obsługa i szybka realizacja."</blockquote>
+          <p class="mt-4 font-semibold">— Katarzyna</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Kontakt -->
-  <section id="contact" class="py-24 bg-white">
+  <section id="contact" class="py-24 bg-white dark:bg-gray-800">
     <div class="max-w-3xl mx-auto px-6 text-center animate-fadeInUp">
-      <h3 class="text-4xl font-bold mb-8 text-gray-900 tracking-tight">Skontaktuj się z nami</h3>
+      <h2 class="text-4xl font-bold mb-8">Skontaktuj się z nami</h2>
       <form class="space-y-8 text-left">
-        <input type="text" placeholder="Imię" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition" required />
-        <input type="email" placeholder="Adres e-mail" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition" required />
-        <textarea placeholder="Wiadomość" rows="5" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition" required></textarea>
-        <button type="submit" class="w-full bg-[#FBBE18] text-white px-6 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
+        <input type="text" placeholder="Imię"
+               class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition"
+               required />
+        <input type="email" placeholder="Adres e-mail"
+               class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition"
+               required />
+        <textarea placeholder="Wiadomość" rows="5"
+                  class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition"
+                  required></textarea>
+        <button type="submit"
+                class="w-full bg-[#FBBE18] text-white px-6 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
           Wyślij wiadomość
         </button>
       </form>
@@ -222,166 +234,187 @@
 
   <!-- Chatbox -->
   <div class="fixed bottom-6 right-6 z-50">
-    <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
+    <button id="chatToggle"
+            class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
       💬
     </button>
-    <div id="chatBox" class="hidden mt-4 w-80 bg-white border border-gray-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+    <div id="chatBox" class="hidden mt-4 w-80 bg-white dark:bg-gray-700 border border-gray-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
       <div class="bg-[#FBBE18] text-white px-4 py-3 flex justify-between items-center">
         <h4 class="font-semibold">One Step Chat</h4>
-        <button id="chatClose" class="text-white text-xl leading-none hover:text-red-100">&times;</button>
+        <button id="chatClose" class="text-white text-xl hover:text-red-100">&times;</button>
       </div>
-      <div class="flex-1 p-4 space-y-2 text-sm overflow-y-auto h-60" id="chatMessages">
+      <div id="chatMessages" class="flex-1 p-4 space-y-2 overflow-y-auto h-60">
         <div class="bg-gray-100 p-2 rounded-xl self-start max-w-[70%]">
           Cześć!<br>Jak możemy Ci pomóc?
         </div>
       </div>
       <form id="chatForm" class="p-4 border-t border-gray-200 flex items-center gap-2">
-        <input type="text" id="chatInput" placeholder="Napisz wiadomość..." class="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required>
-        <button type="submit" class="bg-[#FBBE18] text-white px-4 py-2 rounded-full text-sm hover:bg-[#e0a917]">Wyślij</button>
+        <input id="chatInput" type="text" placeholder="Napisz wiadomość..."
+               class="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required />
+        <button type="submit" class="bg-[#FBBE18] text-white px-4 py-2 rounded-full hover:bg-[#e0a917]">
+          Wyślij
+        </button>
       </form>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 py-8 mt-12">
-    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">&copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.</div>
+  <!-- Stopka -->
+  <footer class="bg-gray-100 py-8 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 dark:text-gray-400 select-none">
+      &copy; 2025 One Step. Wszelkie prawa zastrzeżone.
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Skrypty -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // AOS + Feather
-      AOS.init({ duration: 800, once: true });
+      // Inicjalizacja AOS i Feather
+      AOS.init({ duration:800, once:true });
       feather.replace();
 
-      // Slider data & refs
-      const data = [
-        { title: "Usługa 1", text: "Rozbudowany opis usługi nr 1, pokazujący wszystkie zalety." },
-        { title: "Usługa 2", text: "Rozbudowany opis usługi nr 2, pokazujący wszystkie zalety." },
-        { title: "Usługa 3", text: "Rozbudowany opis usługi nr 3, pokazujący wszystkie zalety." },
-        { title: "Usługa 4", text: "Rozbudowany opis usługi nr 4, pokazujący wszystkie zalety." }
-      ];
-      const wrapper = document.getElementById("oferta-slides");
-      const visible = 2, total = data.length;
-      let index = visible, busy = false;
-
-      // Make slide
-      function makeSlide(item) {
-        const outer = document.createElement("div");
-        outer.className = "flex-shrink-0 w-1/2 px-3 cursor-pointer";
-        outer.setAttribute("data-aos", "fade-up");
-        outer.innerHTML = `
-          <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] hover:shadow-xl tilt-hover transition">
-            <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
-            <p class="text-lg text-gray-700">${item.text}</p>
-          </div>`;
-        outer.addEventListener("click", () => openModal(item));
-        return outer;
-      }
-
-      // Build looped slides
-      data.slice(-visible).forEach(i => wrapper.appendChild(makeSlide(i)));
-      data.forEach(i => wrapper.appendChild(makeSlide(i)));
-      data.slice(0, visible).forEach(i => wrapper.appendChild(makeSlide(i)));
-
-      wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
-
-      // Nav
-      document.getElementById("prevBtn").onclick = () => slideTo(index - 1);
-      document.getElementById("nextBtn").onclick = () => slideTo(index + 1);
-
-      function slideTo(newIndex) {
-        if (busy) return;
-        index = newIndex;
-        wrapper.style.transition = "transform 2s linear";
-        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
-      }
-
-      wrapper.addEventListener("transitionend", e => {
-        if (e.propertyName !== "transform") return;
-        busy = true;
-        wrapper.style.transition = "none";
-        if (index < visible) index += total;
-        else if (index >= total + visible) index -= total;
-        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
-        setTimeout(() => {
-          wrapper.style.transition = "transform 2s linear";
-          busy = false;
-        }, 20);
+      // Dark Mode Toggle
+      const btn = document.getElementById("darkToggle");
+      btn.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        const icon = document.querySelector("#darkToggle i");
+        icon.setAttribute("data-feather",
+          document.documentElement.classList.contains("dark") ? "moon" : "sun"
+        );
+        feather.replace();
       });
 
-      setInterval(() => slideTo(index + 1), 5000);
+      // Sticky header shrink
+      const header = document.querySelector("header");
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("shrink", window.scrollY > 50);
+      });
 
-      // Modal refs
-      const modal = document.getElementById("ofertaModal");
-      const modalTitle = document.getElementById("modalTitle");
-      const modalText = document.getElementById("modalText");
-      const modalClose = document.getElementById("modalClose");
+      // UTM personalization
+      const params = new URLSearchParams(location.search);
+      document.getElementById("utmName").textContent =
+        params.get("utm_source") || "Gościu";
 
-      function openModal(item) {
-        modalTitle.textContent = item.title;
-        modalText.textContent = item.text;
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
+      // Slider setup
+      const data = [
+        { title:"Usługa 1", text:"Rozbudowany opis usługi nr 1." },
+        { title:"Usługa 2", text:"Rozbudowany opis usługi nr 2." },
+        { title:"Usługa 3", text:"Rozbudowany opis usługi nr 3." },
+        { title:"Usługa 4", text:"Rozbudowany opis usługi nr 4." }
+      ];
+      const wrapper = document.getElementById("oferta-slides"),
+            visible=2, total=data.length;
+      let idx=visible, busy=false;
+
+      function makeSlide(item){
+        const el=document.createElement("div");
+        el.className="flex-shrink-0 w-1/2 px-3 cursor-pointer";
+        el.setAttribute("data-aos","fade-up");
+        el.innerHTML=`
+          <div class="bg-white p-8 dark:bg-gray-700 rounded-2xl shadow-lg border-2 border-[#FBBE18] hover:shadow-xl tilt-hover">
+            <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
+            <p class="text-lg text-gray-700 dark:text-gray-300">${item.text}</p>
+          </div>`;
+        el.addEventListener("click",()=>openModal(item));
+        return el;
       }
-      modalClose.addEventListener("click", () => modal.classList.replace("flex","hidden"));
-      modal.addEventListener("click", e => { if (e.target===modal) modal.classList.replace("flex","hidden"); });
 
-      // Contact overlay
-      const contactLink = document.querySelector('a[href="#contact"]');
-      const contactSlide = document.getElementById('contactSlide');
-      const closeContact = document.getElementById('closeContact');
-      const overlay = document.getElementById('contactOverlay');
-      if (contactLink && contactSlide && overlay) {
-        contactLink.addEventListener('click', e => {
+      data.slice(-visible).forEach(i=>wrapper.appendChild(makeSlide(i)));
+      data.forEach(i=>wrapper.appendChild(makeSlide(i)));
+      data.slice(0,visible).forEach(i=>wrapper.appendChild(makeSlide(i)));
+      wrapper.style.transform=`translateX(-${(100/visible)*idx}%)`;
+
+      document.getElementById("prevBtn").onclick=()=>slideTo(idx-1);
+      document.getElementById("nextBtn").onclick=()=>slideTo(idx+1);
+
+      function slideTo(n){
+        if(busy) return;
+        idx=n;
+        wrapper.style.transition="transform 2s linear";
+        wrapper.style.transform=`translateX(-${(100/visible)*idx}%)`;
+      }
+
+      wrapper.addEventListener("transitionend",e=>{
+        if(e.propertyName!=="transform") return;
+        busy=true; wrapper.style.transition="none";
+        if(idx<visible) idx+=total;
+        else if(idx>=total+visible) idx-=total;
+        wrapper.style.transform=`translateX(-${(100/visible)*idx}%)`;
+        setTimeout(()=>{
+          wrapper.style.transition="transform 2s linear";
+          busy=false;
+        },20);
+      });
+
+      setInterval(()=>slideTo(idx+1),5000);
+
+      // Modal oferty
+      const modal=document.getElementById("ofertaModal"),
+            mTitle=document.getElementById("modalTitle"),
+            mText=document.getElementById("modalText"),
+            mClose=document.getElementById("modalClose");
+
+      function openModal(item){
+        mTitle.textContent=item.title;
+        mText.textContent=item.text;
+        modal.classList.replace("hidden","flex");
+      }
+      mClose.addEventListener("click",()=>modal.classList.replace("flex","hidden"));
+      modal.addEventListener("click",e=>{ if(e.target===modal) modal.classList.replace("flex","hidden"); });
+
+      // Kontakt overlay (jeśli w kodzie jest contactSlide)
+      const contactLink=document.querySelector('a[href="#contact"]'),
+            overlay=document.getElementById("contactOverlay"),
+            contactSlide=document.getElementById("contactSlide"),
+            closeContact=document.getElementById("closeContact");
+      if(contactLink && overlay && contactSlide){
+        contactLink.addEventListener("click",e=>{
           e.preventDefault();
-          if (contactSlide) contactSlide.classList.remove('scale-0');
-          overlay.classList.remove('hidden');
+          contactSlide.classList.remove("scale-0");
+          overlay.classList.remove("hidden");
         });
-        closeContact?.addEventListener('click', () => {
-          contactSlide.classList.add('scale-0');
-          overlay.classList.add('hidden');
+        closeContact.addEventListener("click",()=>{
+          contactSlide.classList.add("scale-0");
+          overlay.classList.add("hidden");
         });
-        overlay.addEventListener('click', () => {
-          contactSlide.classList.add('scale-0');
-          overlay.classList.add('hidden');
+        overlay.addEventListener("click",()=>{
+          contactSlide.classList.add("scale-0");
+          overlay.classList.add("hidden");
         });
       }
 
-      // Chat logic
-      const toggleBtn = document.getElementById('chatToggle');
-      const chatBox = document.getElementById('chatBox');
-      const closeBtn = document.getElementById('chatClose');
-      const chatForm = document.getElementById('chatForm');
-      const chatInput = document.getElementById('chatInput');
-      const chatMessages = document.getElementById('chatMessages');
-      setTimeout(() => {
-        toggleBtn.classList.add('ping-once');
-        chatBox.classList.remove('hidden');
-      }, 3000);
-      toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
-      closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
-      chatForm.addEventListener('submit', e => {
+      // Chatbox
+      const toggleBtn=document.getElementById("chatToggle"),
+            chatBox=document.getElementById("chatBox"),
+            closeBtn=document.getElementById("chatClose"),
+            chatForm=document.getElementById("chatForm"),
+            chatInput=document.getElementById("chatInput"),
+            chatMessages=document.getElementById("chatMessages");
+      setTimeout(()=>{
+        toggleBtn.classList.add("ping-once");
+        chatBox.classList.remove("hidden");
+      },3000);
+      toggleBtn.addEventListener("click",()=>chatBox.classList.toggle("hidden"));
+      closeBtn.addEventListener("click",()=>chatBox.classList.add("hidden"));
+      chatForm.addEventListener("submit",e=>{
         e.preventDefault();
-        const msg = chatInput.value.trim();
-        if (!msg) return;
-        const userBubble = document.createElement('div');
-        userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
-        userBubble.textContent = msg;
+        const msg=chatInput.value.trim();
+        if(!msg) return;
+        const userBubble=document.createElement("div");
+        userBubble.className="bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto";
+        userBubble.textContent=msg;
         chatMessages.appendChild(userBubble);
-        chatInput.value = '';
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        setTimeout(() => {
-          const botBubble = document.createElement('div');
-          botBubble.className = 'bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto';
-          botBubble.textContent = "Dziękujemy! Odezwiemy się wkrótce.";
+        chatInput.value="";
+        chatMessages.scrollTop=chatMessages.scrollHeight;
+        setTimeout(()=>{
+          const botBubble=document.createElement("div");
+          botBubble.className="bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto";
+          botBubble.textContent="Dziękujemy! Odezwiemy się wkrótce.";
           chatMessages.appendChild(botBubble);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1000);
+          chatMessages.scrollTop=chatMessages.scrollHeight;
+        },1000);
       });
     });
   </script>
 </body>
 </html>
-```
