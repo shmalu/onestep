@@ -113,7 +113,7 @@
       </div>
     </section>
 
-<!-- Sekcja oferta z karuzelą i strzałkami całkowicie na zewnątrz -->
+<!-- Sekcja oferta z karuzelą i wyrównanymi strzałkami -->
 <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
   <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
     <h2 class="text-4xl font-bold mb-8 text-gray-900">Nasza Oferta</h2>
@@ -143,15 +143,15 @@
         </div>
       </div>
 
-      <!-- Strzałka lewo całkowicie na zewnątrz -->
+      <!-- Strzałka lewo -->
       <button id="prevBtn" aria-label="Poprzednia oferta"
-        class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
+        class="absolute top-1/2 left-0 transform -translate-y-1/2 -ml-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
         &#10094;
       </button>
 
-      <!-- Strzałka prawo całkowicie na zewnątrz -->
+      <!-- Strzałka prawo -->
       <button id="nextBtn" aria-label="Następna oferta"
-        class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
+        class="absolute top-1/2 right-0 transform -translate-y-1/2 -mr-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
         &#10095;
       </button>
     </div>
@@ -176,63 +176,6 @@
   </script>
 </section>
 
-    // Zablokuj scroll kółkiem i dotykiem
-    carousel.addEventListener('wheel', e => e.preventDefault());
-    carousel.addEventListener('touchmove', e => e.preventDefault());
-  </script>
-</section>
-
-
-      <!-- Strzałka prawo -->
-      <button id="nextBtn" aria-label="Następna oferta" class="absolute right-0 top-1/2 transform -translate-y-1/2 text-4xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
-        &#10095;
-      </button>
-    </div>
-  </div>
-
-  <script>
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const itemWidth = carousel.querySelector('div').offsetWidth + 24; // szerokość kafelka + odstęp
-
-    prevBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
-    });
-
-    // Zapobiegaj przewijaniu kółkiem myszy i dotykiem
-    carousel.addEventListener('wheel', e => e.preventDefault());
-    carousel.addEventListener('touchmove', e => e.preventDefault());
-  </script>
-</section>
-
-
-      <!-- Strzałka prawo -->
-      <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100">
-        &#8594;
-      </button>
-    </div>
-  </div>
-
-  <script>
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const scrollAmount = 300; // dostosuj w razie potrzeby
-
-    prevBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
-  </script>
-</section>
 
 
 
