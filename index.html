@@ -113,7 +113,7 @@
       </div>
     </section>
 
-<!-- Sekcja oferta jako slider -->
+<!-- Sekcja oferta jako slider z dwoma slajdami jednocześnie -->
 <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-4xl font-bold mb-12 text-gray-900">Nasza Oferta</h2>
@@ -125,25 +125,36 @@
         class="flex transition-transform duration-700 ease-in-out"
         style="transform: translateX(0%);"
       >
-        <!-- Każdy slajd -->
-        <div class="min-w-full bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
+        <!-- Slajd 1 -->
+        <div class="flex-shrink-0 w-1/2 px-3">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
         </div>
 
-        <div class="min-w-full bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
+        <!-- Slajd 2 -->
+        <div class="flex-shrink-0 w-1/2 px-3">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
         </div>
 
-        <div class="min-w-full bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
+        <!-- Slajd 3 -->
+        <div class="flex-shrink-0 w-1/2 px-3">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
         </div>
 
-        <div class="min-w-full bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
+        <!-- Slajd 4 -->
+        <div class="flex-shrink-0 w-1/2 px-3">
+          <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-[#FBBE18]">
+            <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
+            <p class="text-gray-700">Opis przykładowej usługi.</p>
+          </div>
         </div>
       </div>
 
@@ -151,9 +162,8 @@
       <button
         id="prevBtn"
         class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"
-        aria-label="Previous"
+        aria-label="Poprzednia oferta"
       >
-        <!-- ikona strzałki w lewo -->
         <svg class="w-6 h-6 text-[#FBBE18]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
@@ -161,9 +171,8 @@
       <button
         id="nextBtn"
         class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"
-        aria-label="Next"
+        aria-label="Następna oferta"
       >
-        <!-- ikona strzałki w prawo -->
         <svg class="w-6 h-6 text-[#FBBE18]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
@@ -172,26 +181,24 @@
   </div>
 </section>
 
-<!-- Skrypt sterujący sliderem -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const slidesContainer = document.getElementById("oferta-slides");
     const totalSlides = slidesContainer.children.length;
+    const visibleSlides = 2;
+    const maxIndex = totalSlides - visibleSlides;
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     let currentIndex = 0;
 
-    // Funkcja przejścia do danego slajdu
     function goToSlide(index) {
-      // zapętlenie
-      if (index < 0) index = totalSlides - 1;
-      if (index >= totalSlides) index = 0;
+      if (index < 0) index = maxIndex;
+      if (index > maxIndex) index = 0;
       currentIndex = index;
-      const offset = -100 * currentIndex;
-      slidesContainer.style.transform = `translateX(${offset}%)`;
+      const offsetPercent = -(100 / visibleSlides) * currentIndex;
+      slidesContainer.style.transform = `translateX(${offsetPercent}%)`;
     }
 
-    // Obsługa przycisków
     prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
     nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
 
