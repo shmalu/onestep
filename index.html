@@ -119,11 +119,11 @@
     <h2 class="text-4xl font-bold mb-12 text-gray-900">Nasza Oferta</h2>
 
     <div class="relative overflow-hidden">
-      <!-- Kontener slajdów -->
+      <!-- Kontener slajdów: ustawiamy ręcznie transition 2s linear -->
       <div
         id="oferta-slides"
-        class="flex transition-transform duration-700 ease-in-out"
-        style="transform: translateX(0%);"
+        class="flex ease-linear"
+        style="transition: transform 2s linear;"
       >
         <!-- Slajd 1 -->
         <div class="flex-shrink-0 w-1/2 px-3">
@@ -187,9 +187,9 @@
     const totalSlides = slidesContainer.children.length;
     const visibleSlides = 2;
     const maxIndex = totalSlides - visibleSlides;
+    let currentIndex = 0;
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-    let currentIndex = 0;
 
     function goToSlide(index) {
       if (index < 0) index = maxIndex;
@@ -206,6 +206,7 @@
     setInterval(() => goToSlide(currentIndex + 1), 5000);
   });
 </script>
+
 
     <!-- Opinie -->
     <section id="opinions" class="py-24 bg-[#FEF8ED]">
