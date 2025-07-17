@@ -2,236 +2,176 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>One Step</title>
 
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Inter + Poppins -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@600;800&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <!-- AOS CSS (fallback) -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- Feather Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- GSAP + ScrollTrigger + Flip -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
-
-  <!-- TypeIt.js for typewriter -->
-  <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
-
-  <!-- VanillaTilt for 3D tilt -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
-
-  <!-- tsParticles -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
-
-  <!-- Confetti.js -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
   <style>
-    /* TYPOGRAFIA & KOLORY */
-    body { font-family:'Inter',sans-serif; }
-    h1,h2,h3,h4 { font-family:'Poppins',sans-serif; }
-    :root {
-      --primary: #FBBE18;
-      --darknav: #1F2937;
-      --lightgray: #F3F4F6;
-      --shimmer: linear-gradient(to right,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.5) 50%,
-        rgba(255,255,255,0) 100%
-      );
-    }
-
-    /* GRADIENTOWE TŁO Z ANIMACJĄ */
-    :root { --hue:0; }
     body {
-      animation:hueRotate 20s linear infinite;
-      background:linear-gradient(135deg,
-        hsl(var(--hue),70%,60%),
-        hsl(calc(var(--hue)+60),70%,60%)
-      );
-    }
-    @keyframes hueRotate { to { --hue:360; } }
-
-    /* PARALLAX HERO */
-    .parallax { background-attachment:fixed; background-size:cover; }
-
-    /* SHIMMER TEXT */
-    .shimmer {
-      position:relative; overflow:hidden; color:var(--primary);
-    }
-    .shimmer::after {
-      content:""; position:absolute; top:0; left:-100%; width:100%; height:100%;
-      background:var(--shimmer); animation:shimmer 2s infinite;
-    }
-    @keyframes shimmer { to { left:100%; } }
-
-    /* BLOB SHAPE */
-    .blob {
-      position:absolute; top:10%; right:8%;
-      width:300px; height:300px;
-      background:rgba(251,190,24,0.2);
-      border-radius:50% 50% 60% 40%;
-      animation:blobAnim 8s ease-in-out infinite;
-      z-index:0;
-    }
-    @keyframes blobAnim {
-      0%,100%{border-radius:50% 50% 60% 40%;}
-      50%{border-radius:60% 30% 50% 60%;}
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
 
-    /* TS PARTICLES KONFIGURACJA */
-    #particles-js { position:absolute; inset:0; z-index:0; }
-
-    /* RIPPLES EFFECT */
-    .ripple { position:relative; overflow:hidden; }
-    .ripple span {
-      position:absolute; border-radius:50%;
-      transform:scale(0); background:rgba(255,255,255,0.6);
-      animation:ripple 0.6s linear;
-    }
-    @keyframes ripple { to { transform:scale(4); opacity:0; } }
-
-    /* TILT & SHADOW CARDS */
-    .tilt-card { background:var(--lightgray); border-radius:1rem; }
-    .tilt-card:hover { box-shadow:0 20px 40px rgba(0,0,0,0.15); }
-
-    /* FLOATING LABELS */
-    .form-group { position:relative; }
-    .form-group input,
-    .form-group textarea { padding-top:1.5rem; }
-    .form-group label {
-      position:absolute; top:0.75rem; left:1rem;
-      pointer-events:none; transition:0.2s; color:#888;
-    }
-    .form-group input:focus + label,
-    .form-group input:not(:placeholder-shown) + label,
-    .form-group textarea:focus + label,
-    .form-group textarea:not(:placeholder-shown) + label {
-      transform:translateY(-1rem); font-size:0.75rem; color:var(--primary);
-    }
-
-    /* STICKY CTA */
-    #stickyCTA {
-      position:fixed; bottom:0; left:50%; transform:translateX(-50%);
-      background:var(--primary); color:#fff; padding:1rem 2rem;
-      border-radius:2rem 2rem 0 0; box-shadow:0 -4px 12px rgba(0,0,0,0.15);
-      display:flex; align-items:center; gap:0.5rem;
-      opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; z-index:50;
-    }
-    #stickyCTA.show { opacity:1; visibility:visible; }
-
-    /* FOOTER WAVE */
-    .footer-wave { position:relative; overflow:hidden; }
-    .footer-wave svg {
-      position:absolute; top:-5px; left:0; width:100%; height:50px; fill:#fff;
-    }
-
-    /* PODSTAWOWE ANIMACJE */
     @keyframes fadeInUp {
-      0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
-    .animate-fadeInUp { animation:fadeInUp .8s ease forwards; }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes pulseSlow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.5);
+      }
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 10px 6px rgba(251, 190, 24, 0.3);
+      }
+    }
+    .pulse-slow {
+      animation: pulseSlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pingOnce {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.6);
+      }
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(251, 190, 24, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0);
+      }
+    }
+    .ping-once {
+      animation: pingOnce 1s ease-out 1;
+    }
+
+    /* tilt effect on hover */
+    .tilt-hover:hover {
+      transform: perspective(600px) rotateY(4deg) scale(1.02);
+      transition: transform 0.5s ease;
+    }
   </style>
 </head>
+<body class="bg-white text-gray-800">
 
-<body class="text-gray-800 antialiased">
-
-  <!-- STICKY CTA -->
-  <div id="stickyCTA" class="ripple hover:scale-105" onclick="scrollToContact()">
-    <span></span>
-    <i data-feather="phone-call" class="w-6 h-6"></i>
-    <span>Skontaktuj się teraz</span>
-  </div>
-
-  <!-- HEADER -->
+  <!-- Header -->
   <header class="bg-white shadow-md fixed w-full z-20" data-aos="fade-down">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3">
-        <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto"/>
+        <img src="logoOS.png" alt="Logo OneStep" class="h-10 w-auto" />
         <span class="text-2xl font-extrabold text-[#FBBE18] select-none">One Step</span>
       </div>
       <nav class="space-x-4 font-medium text-gray-700 flex items-center">
-        <a href="#oferta" class="hover:scale-105">Oferta</a>
-        <a href="#features" class="hover:scale-105">Dlaczego warto?</a>
-        <a href="#opinions" class="hover:scale-105">Opinie</a>
-        <a href="#contact" class="hover:scale-105">Kontakt</a>
+        <a href="#oferta" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+          <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
+        </a>
+        <a href="#features" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+          <i data-feather="bar-chart-2" class="w-4 h-4 mr-2"></i>Dlaczego warto?
+        </a>
+        <a href="#opinions" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+          <i data-feather="users" class="w-4 h-4 mr-2"></i>Opinie
+        </a>
+        <a href="#contact" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+          <i data-feather="mail" class="w-4 h-4 mr-2"></i>Kontakt
+        </a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="hero" class="parallax relative bg-[#FEF8ED] pt-32 pb-24 overflow-hidden">
-    <div id="particles-js"></div>
-    <div class="blob"></div>
-    <div class="relative max-w-5xl mx-auto text-center px-6 animate-fadeInUp" style="z-index:1;">
-      <h2 class="shimmer text-[70px] md:text-[90px] font-[800] mb-6 drop-shadow-md">
-        <span id="hero-typewriter"></span>
+  <!-- Hero -->
+  <section class="relative bg-[#FEF8ED] pt-32 pb-24 overflow-hidden">
+    <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
+      <svg width="600" height="600" class="opacity-10 pulse-slow">
+        <circle cx="300" cy="300" r="200" fill="#FBBE18" />
+      </svg>
+    </div>
+    <div class="relative max-w-5xl mx-auto text-center px-6 animate-fadeInUp">
+      <h2 class="text-5xl font-extrabold mb-6 text-[#FBBE18] drop-shadow-md">
+        Zbuduj swoją markę razem z nami!
       </h2>
       <p class="text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
         Nowoczesne rozwiązania marketingowe dla Twojego biznesu.
       </p>
-      <button class="ripple bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:scale-105"
-              onclick="createRipple(event)">
+      <a href="#contact" class="inline-block bg-[#FBBE18] text-white px-8 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
         Skontaktuj się z nami
-      </button>
+      </a>
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- Features -->
   <section id="features" class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold mb-14" data-aos="fade-up">Dlaczego warto?</h3>
+      <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight" data-aos="fade-up">
+        Dlaczego warto?
+      </h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="tilt-card tilt-hover p-8 transition" data-aos="fade-up" data-aos-delay="100">
+        <div data-aos="fade-up" data-aos-delay="100" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
           <i data-feather="target" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
-          <h4 class="text-2xl font-semibold mb-4">Strategia</h4>
-          <p>Spersonalizowane strategie marketingowe dopasowane do Twoich celów.</p>
+          <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Strategia</h4>
+          <p class="text-gray-700 leading-relaxed">
+            Spersonalizowane strategie marketingowe dopasowane do Twoich celów.
+          </p>
         </div>
-        <div class="tilt-card tilt-hover p-8 transition" data-aos="fade-up" data-aos-delay="200">
+        <div data-aos="fade-up" data-aos-delay="200" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
           <i data-feather="cpu" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
-          <h4 class="text-2xl font-semibold mb-4">Technologia</h4>
-          <p>Najnowsze narzędzia i automatyzacja, aby zwiększyć efektywność.</p>
+          <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Technologia</h4>
+          <p class="text-gray-700 leading-relaxed">
+            Najnowsze narzędzia i automatyzacja, aby zwiększyć efektywność.
+          </p>
         </div>
-        <div class="tilt-card tilt-hover p-8 transition" data-aos="fade-up" data-aos-delay="300">
+        <div data-aos="fade-up" data-aos-delay="300" class="p-8 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition">
           <i data-feather="headphones" class="w-10 h-10 text-[#FBBE18] mb-4 mx-auto"></i>
-          <h4 class="text-2xl font-semibold mb-4">Wsparcie</h4>
-          <p>Pomoc techniczna i doradztwo dostępne na każdym etapie współpracy.</p>
+          <h4 class="text-2xl font-semibold mb-4 text-[#FBBE18]">Wsparcie</h4>
+          <p class="text-gray-700 leading-relaxed">
+            Pomoc techniczna i doradztwo dostępne na każdym etapie współpracy.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OFERTA SLIDER -->
+  <!-- Oferta Slider -->
   <section id="oferta" class="pt-32 pb-24 bg-[#FEF8ED]">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-12" data-aos="fade-up">Nasza Oferta</h2>
+      <h2 class="text-4xl font-bold mb-12 text-gray-900" data-aos="fade-up">
+        Nasza Oferta
+      </h2>
       <div class="relative overflow-hidden">
-        <div id="oferta-slides" class="flex"></div>
-        <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 hover:scale-105 p-2 rounded-full bg-white shadow">
+        <div id="oferta-slides" class="flex" style="transition: transform 2s linear; will-change: transform;">
+          <!-- slides generated by JS -->
+        </div>
+        <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100" aria-label="Poprzednia oferta">
           <i data-feather="chevron-left" class="w-6 h-6 text-[#FBBE18]"></i>
         </button>
-        <button id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 hover:scale-105 p-2 rounded-full bg-white shadow">
+        <button id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100" aria-label="Następna oferta">
           <i data-feather="chevron-right" class="w-6 h-6 text-[#FBBE18]"></i>
         </button>
       </div>
     </div>
   </section>
 
-  <!-- MODAL OFERTY -->
-  <div id="ofertaModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
+  <!-- Modal oferty -->
+  <div id="ofertaModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50" data-aos="zoom-in">
     <div class="bg-white p-8 rounded-2xl shadow-lg border-4 border-[#FBBE18] max-w-xl w-full relative mx-4">
-      <button id="modalClose" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+      <button id="modalClose" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" aria-label="Zamknij">
         <i data-feather="x" class="w-6 h-6"></i>
       </button>
       <h3 id="modalTitle" class="text-3xl font-semibold text-[#FBBE18] mb-4"></h3>
@@ -239,22 +179,24 @@
     </div>
   </div>
 
-  <!-- OPINIE -->
+  <!-- Opinie -->
   <section id="opinions" class="py-24 bg-[#FEF8ED]">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold mb-14" data-aos="fade-up">Co mówią nasi klienci?</h3>
+      <h3 class="text-4xl font-bold mb-14 text-gray-900 tracking-tight" data-aos="fade-up">
+        Co mówią nasi klienci?
+      </h3>
       <div class="grid md:grid-cols-3 gap-10">
-        <div class="tilt-card tilt-hover p-8 rounded-2xl transition pulse-slow" data-aos="zoom-in" data-aos-delay="100">
+        <div data-aos="zoom-in" data-aos-delay="100" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
           <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
           <p class="italic text-gray-700 text-lg">"Nasza sprzedaż wzrosła o 40% w ciągu 3 miesięcy!"</p>
           <div class="mt-6 font-semibold text-[#FBBE18]">— Anna</div>
         </div>
-        <div class="tilt-card tilt-hover p-8 rounded-2xl transition pulse-slow" data-aos="zoom-in" data-aos-delay="200">
+        <div data-aos="zoom-in" data-aos-delay="200" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
           <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
           <p class="italic text-gray-700 text-lg">"Pełen profesjonalizm i realne wyniki. Polecam każdemu!"</p>
           <div class="mt-6 font-semibold text-[#FBBE18]">— Michał</div>
         </div>
-        <div class="tilt-card tilt-hover p-8 rounded-2xl transition pulse-slow" data-aos="zoom-in" data-aos-delay="300">
+        <div data-aos="zoom-in" data-aos-delay="300" class="bg-white p-8 rounded-2xl shadow-lg pulse-slow">
           <i data-feather="quote" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
           <p class="italic text-gray-700 text-lg">"Świetna obsługa klienta i szybka realizacja usług."</p>
           <div class="mt-6 font-semibold text-[#FBBE18]">— Katarzyna</div>
@@ -263,136 +205,181 @@
     </div>
   </section>
 
-  <!-- KONTAKT -->
+  <!-- Kontakt -->
   <section id="contact" class="py-24 bg-white">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold mb-8 text-gray-900" data-aos="fade-up">Skontaktuj się z nami</h3>
-      <form id="contactForm" class="space-y-8">
-        <div class="form-group">
-          <input type="text" id="name" placeholder=" " class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:ring-2 focus:ring-[#FBBE18] transition" required/>
-          <label for="name">Imię</label>
-        </div>
-        <div class="form-group">
-          <input type="email" id="email" placeholder=" " class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:ring-2 focus:ring-[#FBBE18] transition" required/>
-          <label for="email">Adres e-mail</label>
-        </div>
-        <div class="form-group">
-          <textarea id="message" placeholder=" " rows="5" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:ring-2 focus:ring-[#FBBE18] transition" required></textarea>
-          <label for="message">Wiadomość</label>
-        </div>
-        <button
-          type="submit"
-          class="ripple hover:scale-105 bg-[#FBBE18] text-white px-6 py-4 rounded-3xl shadow-lg transition"
-          onclick="createRipple(event)"
-        >
+    <div class="max-w-3xl mx-auto px-6 text-center animate-fadeInUp">
+      <h3 class="text-4xl font-bold mb-8 text-gray-900 tracking-tight">Skontaktuj się z nami</h3>
+      <form class="space-y-8 text-left">
+        <input type="text" placeholder="Imię" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition" required />
+        <input type="email" placeholder="Adres e-mail" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition" required />
+        <textarea placeholder="Wiadomość" rows="5" class="w-full px-6 py-4 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#FBBE18] transition" required></textarea>
+        <button type="submit" class="w-full bg-[#FBBE18] text-white px-6 py-4 rounded-3xl shadow-lg hover:bg-[#e0a917] transition transform hover:-translate-y-1 hover:scale-105">
           Wyślij wiadomość
         </button>
       </form>
     </div>
   </section>
 
-  <!-- CHATBOX -->
+  <!-- Chatbox -->
   <div class="fixed bottom-6 right-6 z-50">
-    <button id="chatToggle" class="bg-[#FBBE18] hover:scale-105 text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition">
+    <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
       💬
     </button>
-    <div id="chatBox" class="hidden mt-4 w-80 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+    <div id="chatBox" class="hidden mt-4 w-80 bg-white border border-gray-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
       <div class="bg-[#FBBE18] text-white px-4 py-3 flex justify-between items-center">
         <h4 class="font-semibold">One Step Chat</h4>
-        <button id="chatClose" class="text-white text-xl">&times;</button>
+        <button id="chatClose" class="text-white text-xl leading-none hover:text-red-100">&times;</button>
       </div>
-      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-2 h-60">
-        <div class="bg-gray-100 p-2 rounded-xl max-w-[70%]">Cześć!<br>Jak możemy Ci pomóc?</div>
+      <div class="flex-1 p-4 space-y-2 text-sm overflow-y-auto h-60" id="chatMessages">
+        <div class="bg-gray-100 p-2 rounded-xl self-start max-w-[70%]">
+          Cześć!<br>Jak możemy Ci pomóc?
+        </div>
       </div>
       <form id="chatForm" class="p-4 border-t border-gray-200 flex items-center gap-2">
-        <input id="chatInput" type="text" placeholder="..." class="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-[#FBBE18]" required/>
-        <button type="submit" class="bg-[#FBBE18] text-white px-4 py-2 rounded-full hover:bg-[#e0a917] transition">
-          Wyślij
-        </button>
+        <input type="text" id="chatInput" placeholder="Napisz wiadomość..." class="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#FBBE18]" required>
+        <button type="submit" class="bg-[#FBBE18] text-white px-4 py-2 rounded-full text-sm hover:bg-[#e0a917]">Wyślij</button>
       </form>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer-wave bg-white py-8 mt-12">
-    <svg viewBox="0 0 1200 50"><path d="M0,50 C400,0 800,100 1200,50 L1200,100 L0,100 Z"></path></svg>
-    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600">&copy; 2025 One Step. Wszelkie prawa zastrzeżone.</div>
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 select-none">&copy; 2025 MojaMarka. Wszelkie prawa zastrzeżone.</div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // TYPEWRITER HERO
-    new TypeIt("#hero-typewriter", {
-      strings:["Zbuduj swoją markę razem z nami!"],
-      speed:100, waitUntilVisible:true
-    }).go();
-
-    // RIPPLE EFFECT
-    function createRipple(e) {
-      const btn = e.currentTarget;
-      const rect = btn.getBoundingClientRect();
-      const circle = document.createElement("span");
-      const size = Math.max(rect.width, rect.height);
-      circle.style.width = circle.style.height = size + "px";
-      circle.style.left = e.clientX - rect.left - size/2 + "px";
-      circle.style.top = e.clientY - rect.top - size/2 + "px";
-      btn.appendChild(circle);
-      circle.addEventListener("animationend", ()=>circle.remove());
-    }
-
-    // SCROLL TO CONTACT
-    function scrollToContact() {
-      document.getElementById("contact").scrollIntoView({ behavior:"smooth" });
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
-      AOS.init({ duration:800, once:true });
+      // AOS + Feather
+      AOS.init({ duration: 800, once: true });
       feather.replace();
 
-      // tsParticles
-      tsParticles.load("particles-js", {
-        particles:{
-          number:{ value:40, density:{ enable:true, area:800 } },
-          color:{ value:"#FBBE18" }, shape:{ type:"circle" },
-          opacity:{ value:0.3 }, size:{ value:3 },
-          move:{ enable:true, speed:1, outModes:"out" }
-        },
-        interactivity:{
-          events:{ onHover:{ enable:true, mode:"grab" } },
-          modes:{ grab:{ distance:150, links:{ opacity:0.4 } } }
-        },
-        detectRetina:true
+      // Slider data & refs
+      const data = [
+        { title: "Usługa 1", text: "Rozbudowany opis usługi nr 1, pokazujący wszystkie zalety." },
+        { title: "Usługa 2", text: "Rozbudowany opis usługi nr 2, pokazujący wszystkie zalety." },
+        { title: "Usługa 3", text: "Rozbudowany opis usługi nr 3, pokazujący wszystkie zalety." },
+        { title: "Usługa 4", text: "Rozbudowany opis usługi nr 4, pokazujący wszystkie zalety." }
+      ];
+      const wrapper = document.getElementById("oferta-slides");
+      const visible = 2, total = data.length;
+      let index = visible, busy = false;
+
+      // Make slide
+      function makeSlide(item) {
+        const outer = document.createElement("div");
+        outer.className = "flex-shrink-0 w-1/2 px-3 cursor-pointer";
+        outer.setAttribute("data-aos", "fade-up");
+        outer.innerHTML = `
+          <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] hover:shadow-xl tilt-hover transition">
+            <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
+            <p class="text-lg text-gray-700">${item.text}</p>
+          </div>`;
+        outer.addEventListener("click", () => openModal(item));
+        return outer;
+      }
+
+      // Build looped slides
+      data.slice(-visible).forEach(i => wrapper.appendChild(makeSlide(i)));
+      data.forEach(i => wrapper.appendChild(makeSlide(i)));
+      data.slice(0, visible).forEach(i => wrapper.appendChild(makeSlide(i)));
+
+      wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+
+      // Nav
+      document.getElementById("prevBtn").onclick = () => slideTo(index - 1);
+      document.getElementById("nextBtn").onclick = () => slideTo(index + 1);
+
+      function slideTo(newIndex) {
+        if (busy) return;
+        index = newIndex;
+        wrapper.style.transition = "transform 2s linear";
+        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+      }
+
+      wrapper.addEventListener("transitionend", e => {
+        if (e.propertyName !== "transform") return;
+        busy = true;
+        wrapper.style.transition = "none";
+        if (index < visible) index += total;
+        else if (index >= total + visible) index -= total;
+        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+        setTimeout(() => {
+          wrapper.style.transition = "transform 2s linear";
+          busy = false;
+        }, 20);
       });
 
-      // VanillaTilt on cards
-      VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
-        glare:true, "max-glare":0.2, scale:1.02, speed:400
-      });
+      setInterval(() => slideTo(index + 1), 5000);
 
-      // Sticky CTA
-      const cta = document.getElementById("stickyCTA");
-      window.addEventListener("scroll", ()=>{
-        if(window.scrollY>600) cta.classList.add("show");
-        else cta.classList.remove("show");
-      });
+      // Modal refs
+      const modal = document.getElementById("ofertaModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalText = document.getElementById("modalText");
+      const modalClose = document.getElementById("modalClose");
 
-      // GSAP ScrollTrigger reveals
-      gsap.utils.toArray("[data-aos]").forEach(el=>{
-        gsap.from(el, {
-          scrollTrigger:{ trigger:el, start:"top 80%" },
-          y:50, opacity:0, duration:0.8, ease:"power1.out"
+      function openModal(item) {
+        modalTitle.textContent = item.title;
+        modalText.textContent = item.text;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+      modalClose.addEventListener("click", () => modal.classList.replace("flex","hidden"));
+      modal.addEventListener("click", e => { if (e.target===modal) modal.classList.replace("flex","hidden"); });
+
+      // Contact overlay
+      const contactLink = document.querySelector('a[href="#contact"]');
+      const contactSlide = document.getElementById('contactSlide');
+      const closeContact = document.getElementById('closeContact');
+      const overlay = document.getElementById('contactOverlay');
+      if (contactLink && contactSlide && overlay) {
+        contactLink.addEventListener('click', e => {
+          e.preventDefault();
+          if (contactSlide) contactSlide.classList.remove('scale-0');
+          overlay.classList.remove('hidden');
         });
-      });
+        closeContact?.addEventListener('click', () => {
+          contactSlide.classList.add('scale-0');
+          overlay.classList.add('hidden');
+        });
+        overlay.addEventListener('click', () => {
+          contactSlide.classList.add('scale-0');
+          overlay.classList.add('hidden');
+        });
+      }
 
-      // Kontakt form confetti
-      document.getElementById("contactForm").addEventListener("submit", e=>{
+      // Chat logic
+      const toggleBtn = document.getElementById('chatToggle');
+      const chatBox = document.getElementById('chatBox');
+      const closeBtn = document.getElementById('chatClose');
+      const chatForm = document.getElementById('chatForm');
+      const chatInput = document.getElementById('chatInput');
+      const chatMessages = document.getElementById('chatMessages');
+      setTimeout(() => {
+        toggleBtn.classList.add('ping-once');
+        chatBox.classList.remove('hidden');
+      }, 3000);
+      toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+      closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
+      chatForm.addEventListener('submit', e => {
         e.preventDefault();
-        confetti({ particleCount:100, spread:70 });
-        // tu można dodać AJAX do wysyłki formularza
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+        const userBubble = document.createElement('div');
+        userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
+        userBubble.textContent = msg;
+        chatMessages.appendChild(userBubble);
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(() => {
+          const botBubble = document.createElement('div');
+          botBubble.className = 'bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto';
+          botBubble.textContent = "Dziękujemy! Odezwiemy się wkrótce.";
+          chatMessages.appendChild(botBubble);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
       });
-
-      // TODO: skrypty slidera i modala – wklej swój istniejący kod bez zmian
     });
   </script>
 </body>
