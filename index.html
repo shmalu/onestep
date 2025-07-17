@@ -119,38 +119,23 @@
 
     <div class="relative">
       <!-- Kontener karuzeli -->
-      <div id="carousel" class="flex space-x-8 overflow-hidden px-12">
-        <!-- Produkty -->
-        <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
+      <div id="carousel-container" class="overflow-hidden px-12 relative">
+        <div id="carousel" class="flex space-x-8 transition-transform duration-300">
+          <!-- Produkty w JS dynamicznie sklonowane -->
         </div>
-        <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
-        </div>
-        <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
-        </div>
-        <div class="flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96">
-          <h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">Usługa 4</h3>
-          <p class="text-gray-700">Opis przykładowej usługi.</p>
-        </div>
-        <!-- Dodaj więcej usług według potrzeby -->
+
+        <!-- Strzałka lewo -->
+        <button id="prevBtn" aria-label="Poprzednia oferta"
+          class="absolute top-1/2 left-0 transform -translate-y-1/2 -ml-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
+          ❮
+        </button>
+
+        <!-- Strzałka prawo -->
+        <button id="nextBtn" aria-label="Następna oferta"
+          class="absolute top-1/2 right-0 transform -translate-y-1/2 -mr-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
+          ❯
+        </button>
       </div>
-
-      <!-- Strzałka lewo -->
-      <button id="prevBtn" aria-label="Poprzednia oferta"
-        class="absolute top-1/2 left-0 transform -translate-y-1/2 -ml-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
-        ❮
-      </button>
-
-      <!-- Strzałka prawo -->
-      <button id="nextBtn" aria-label="Następna oferta"
-        class="absolute top-1/2 right-0 transform -translate-y-1/2 -mr-12 text-5xl text-[#FBBE18] bg-white bg-opacity-50 p-3 rounded-full shadow-md hover:bg-opacity-75 transition duration-300 z-10">
-        ❯
-      </button>
     </div>
   </div>
 
@@ -158,37 +143,71 @@
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const items = Array.from(carousel.children);
-    const itemWidth = items[0].offsetWidth + 32;
-    let currentIndex = 0;
-    let auto = true;
-    const speed = 0.2; // px per frame, adjust for slower scroll
+    const originalItems = [
+      { title: 'Usługa 1', desc: 'Opis przykładowej usługi.' },
+      { title: 'Usługa 2', desc: 'Opis przykładowej usługi.' },
+      { title: 'Usługa 3', desc: 'Opis przykładowej usługi.' },
+      { title: 'Usługa 4', desc: 'Opis przykładowej usługi.' },
+      // Dodaj więcej według potrzeby
+    ];
+    const itemCount = originalItems.length;
+    const clonesBefore = [];
+    const clonesAfter = [];
 
-    function goToIndex(index) {
-      currentIndex = (index + items.length) % items.length;
-      carousel.scrollTo({ left: currentIndex * itemWidth, behavior: 'smooth' });
+    // Funkcja tworząca element
+    function createItem(item) {
+      const div = document.createElement('div');
+      div.className = 'flex-none bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] w-96';
+      div.innerHTML = `<h3 class="text-2xl font-semibold text-[#FBBE18] mb-2">${item.title}</h3><p class="text-gray-700">${item.desc}</p>`;
+      return div;
     }
 
-    // Manual click handlers: pause auto and navigate
+    // Klonowanie
+    originalItems.forEach((it, i) => {
+      const before = createItem(it);
+      const after = createItem(it);
+      clonesBefore.push(before);
+      clonesAfter.push(after);
+    });
+
+    // Dodaj przed i oryginały i po
+    clonesBefore.forEach(node => carousel.appendChild(node));
+    originalItems.forEach(it => carousel.appendChild(createItem(it)));
+    clonesAfter.forEach(node => carousel.appendChild(node));
+
+    const itemWidth = carousel.children[0].offsetWidth + 32;
+    let offsetIndex = itemCount; // startujemy od oryginału
+    carousel.style.transform = `translateX(${-offsetIndex * itemWidth}px)`;
+
+    let auto = true;
+    const speed = 0.2; // px per frame
+
+    function animate() {
+      if (auto) {
+        offsetIndex += speed / itemWidth;
+        carousel.style.transform = `translateX(${-offsetIndex * itemWidth}px)`;
+        // reset gdy wyjdziemy poza klony
+        if (offsetIndex >= itemCount * 2) offsetIndex = itemCount;
+        if (offsetIndex <= 0) offsetIndex = itemCount;
+      }
+      requestAnimationFrame(animate);
+    }
+
+    // Przewijanie manualne
     function manual(direction) {
       auto = false;
-      goToIndex(currentIndex + direction);
-      setTimeout(() => auto = true, 1000);
+      offsetIndex = Math.round(offsetIndex) + direction;
+      carousel.style.transition = 'transform 0.5s';
+      carousel.style.transform = `translateX(${-offsetIndex * itemWidth}px)`;
+      setTimeout(() => {
+        carousel.style.transition = '';
+        auto = true;
+      }, 500);
     }
     prevBtn.addEventListener('click', () => manual(-1));
     nextBtn.addEventListener('click', () => manual(1));
 
-    // Auto-scroll loop
-    function autoScroll() {
-      if (auto) {
-        carousel.scrollLeft += speed;
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        if (carousel.scrollLeft >= maxScroll) carousel.scrollLeft = 0;
-      }
-      requestAnimationFrame(autoScroll);
-    }
-
-    window.addEventListener('load', autoScroll);
+    window.addEventListener('load', animate);
   </script>
 </section>
 
