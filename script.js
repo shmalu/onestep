@@ -74,6 +74,23 @@ document.addEventListener("DOMContentLoaded", () => {
   modalClose.addEventListener("click", () => modal.classList.replace("flex","hidden"));
   modal.addEventListener("click", e => { if (e.target===modal) modal.classList.replace("flex","hidden"); });
 
+// Kontakt Modal
+  const openBtn = document.getElementById('openContactModal');
+  const contactModal = document.getElementById('contactModal');
+  const closeBtn = document.getElementById('closeContactModal');
+  openBtn.addEventListener('click', () => {
+    contactModal.classList.remove('hidden');
+    contactModal.classList.add('flex');
+  });
+  closeBtn.addEventListener('click', () => {
+    contactModal.classList.replace('flex', 'hidden');
+  });
+  contactModal.addEventListener('click', e => {
+    if (e.target === contactModal) {
+      contactModal.classList.replace('flex', 'hidden');
+    }
+  });
+
   // Chat
   const toggleBtn = document.getElementById('chatToggle');
   const chatBox = document.getElementById('chatBox');
