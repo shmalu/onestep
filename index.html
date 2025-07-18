@@ -17,8 +17,58 @@
   <!-- Feather Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes pulseSlow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.5);
+      }
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 10px 6px rgba(251, 190, 24, 0.3);
+      }
+    }
+    .pulse-slow {
+      animation: pulseSlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pingOnce {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0.6);
+      }
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(251, 190, 24, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(251, 190, 24, 0);
+      }
+    }
+    .ping-once {
+      animation: pingOnce 1s ease-out 1;
+    }
+
+    /* tilt effect on hover */
+    .tilt-hover:hover {
+      transform: perspective(600px) rotateY(4deg) scale(1.02);
+      transition: transform 0.5s ease;
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-800">
 
@@ -65,44 +115,6 @@
       </a>
     </div>
   </section>
-
-  <!-- Misja -->
-  <section id="mission" class="py-24 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-6 text-center" data-aos="fade-up">
-      <h3 class="text-4xl font-bold mb-6 text-gray-900 tracking-tight">
-        Nasza Misja
-      </h3>
-      <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-        W One Step wierzymy, że każdy biznes zasługuje na to, by wyróżniać się na rynku.
-        Naszą misją jest dostarczanie innowacyjnych i mierzalnych rozwiązań marketingowych,
-        które napędzają wzrost i budują trwałą wartość dla naszych klientów.
-      </p>
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition tilt-hover">
-          <i data-feather="eye" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
-          <h4 class="text-2xl font-semibold mb-2 text-[#FBBE18]">Wizja</h4>
-          <p class="text-gray-600">
-            Kreowanie kampanii, które zmieniają sposób myślenia o marce.
-          </p>
-        </div>
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition tilt-hover">
-          <i data-feather="heart" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
-          <h4 class="text-2xl font-semibold mb-2 text-[#FBBE18]">Wartości</h4>
-          <p class="text-gray-600">
-            Autentyczność, partnerstwo i ciągłe doskonalenie w każdym projekcie.
-          </p>
-        </div>
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition tilt-hover">
-          <i data-feather="trending-up" class="w-8 h-8 text-[#FBBE18] mb-4"></i>
-          <h4 class="text-2xl font-semibold mb-2 text-[#FBBE18]">Cel</h4>
-          <p class="text-gray-600">
-            Maksymalizacja ROI i realny wzrost sprzedaży naszych klientów.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
 
   <!-- Features -->
   <section id="features" class="py-24 bg-white">
@@ -208,8 +220,6 @@
     </div>
   </section>
 
-
-
   <!-- Chatbox -->
   <div class="fixed bottom-6 right-6 z-50">
     <button id="chatToggle" class="bg-[#FBBE18] hover:bg-[#e0a917] text-white text-4xl rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
@@ -239,6 +249,138 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // AOS + Feather
+      AOS.init({ duration: 800, once: true });
+      feather.replace();
+
+      // Slider data & refs
+      const data = [
+        { title: "Usługa 1", text: "Rozbudowany opis usługi nr 1, pokazujący wszystkie zalety." },
+        { title: "Usługa 2", text: "Rozbudowany opis usługi nr 2, pokazujący wszystkie zalety." },
+        { title: "Usługa 3", text: "Rozbudowany opis usługi nr 3, pokazujący wszystkie zalety." },
+        { title: "Usługa 4", text: "Rozbudowany opis usługi nr 4, pokazujący wszystkie zalety." }
+      ];
+      const wrapper = document.getElementById("oferta-slides");
+      const visible = 2, total = data.length;
+      let index = visible, busy = false;
+
+      // Make slide
+      function makeSlide(item) {
+        const outer = document.createElement("div");
+        outer.className = "flex-shrink-0 w-1/2 px-3 cursor-pointer";
+        outer.setAttribute("data-aos", "fade-up");
+        outer.innerHTML = `
+          <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#FBBE18] hover:shadow-xl tilt-hover transition">
+            <h3 class="text-3xl font-semibold text-[#FBBE18] mb-4">${item.title}</h3>
+            <p class="text-lg text-gray-700">${item.text}</p>
+          </div>`;
+        outer.addEventListener("click", () => openModal(item));
+        return outer;
+      }
+
+      // Build looped slides
+      data.slice(-visible).forEach(i => wrapper.appendChild(makeSlide(i)));
+      data.forEach(i => wrapper.appendChild(makeSlide(i)));
+      data.slice(0, visible).forEach(i => wrapper.appendChild(makeSlide(i)));
+
+      wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+
+      // Nav
+      document.getElementById("prevBtn").onclick = () => slideTo(index - 1);
+      document.getElementById("nextBtn").onclick = () => slideTo(index + 1);
+
+      function slideTo(newIndex) {
+        if (busy) return;
+        index = newIndex;
+        wrapper.style.transition = "transform 2s linear";
+        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+      }
+
+      wrapper.addEventListener("transitionend", e => {
+        if (e.propertyName !== "transform") return;
+        busy = true;
+        wrapper.style.transition = "none";
+        if (index < visible) index += total;
+        else if (index >= total + visible) index -= total;
+        wrapper.style.transform = `translateX(-${(100/visible)*index}%)`;
+        setTimeout(() => {
+          wrapper.style.transition = "transform 2s linear";
+          busy = false;
+        }, 20);
+      });
+
+      setInterval(() => slideTo(index + 1), 5000);
+
+      // Modal refs
+      const modal = document.getElementById("ofertaModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalText = document.getElementById("modalText");
+      const modalClose = document.getElementById("modalClose");
+
+      function openModal(item) {
+        modalTitle.textContent = item.title;
+        modalText.textContent = item.text;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+      modalClose.addEventListener("click", () => modal.classList.replace("flex","hidden"));
+      modal.addEventListener("click", e => { if (e.target===modal) modal.classList.replace("flex","hidden"); });
+
+      // Contact overlay
+      const contactLink = document.querySelector('a[href="#contact"]');
+      const contactSlide = document.getElementById('contactSlide');
+      const closeContact = document.getElementById('closeContact');
+      const overlay = document.getElementById('contactOverlay');
+      if (contactLink && contactSlide && overlay) {
+        contactLink.addEventListener('click', e => {
+          e.preventDefault();
+          if (contactSlide) contactSlide.classList.remove('scale-0');
+          overlay.classList.remove('hidden');
+        });
+        closeContact?.addEventListener('click', () => {
+          contactSlide.classList.add('scale-0');
+          overlay.classList.add('hidden');
+        });
+        overlay.addEventListener('click', () => {
+          contactSlide.classList.add('scale-0');
+          overlay.classList.add('hidden');
+        });
+      }
+
+      // Chat logic
+      const toggleBtn = document.getElementById('chatToggle');
+      const chatBox = document.getElementById('chatBox');
+      const closeBtn = document.getElementById('chatClose');
+      const chatForm = document.getElementById('chatForm');
+      const chatInput = document.getElementById('chatInput');
+      const chatMessages = document.getElementById('chatMessages');
+      setTimeout(() => {
+        toggleBtn.classList.add('ping-once');
+        chatBox.classList.remove('hidden');
+      }, 3000);
+      toggleBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+      closeBtn.addEventListener('click', () => chatBox.classList.add('hidden'));
+      chatForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+        const userBubble = document.createElement('div');
+        userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
+        userBubble.textContent = msg;
+        chatMessages.appendChild(userBubble);
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(() => {
+          const botBubble = document.createElement('div');
+          botBubble.className = 'bg-gray-100 p-2 rounded-xl self-start max-w-[70%] mr-auto';
+          botBubble.textContent = "Dziękujemy! Odezwiemy się wkrótce.";
+          chatMessages.appendChild(botBubble);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+      });
+    });
+  </script>
 </body>
 </html>
