@@ -95,9 +95,9 @@
         <span class="text-2xl font-extrabold text-[#FBBE18] select-none">One Step</span>
       </div>
       <nav class="space-x-4 font-medium text-gray-700 flex items-center">
-        <a href="#oferta" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-          <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
-        </a>
+       <a href="#" id="ofertaBtn" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+  <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
+</a>
         <a href="#features" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
           <i data-feather="bar-chart-2" class="w-4 h-4 mr-2"></i>Dlaczego warto?
         </a>
@@ -435,26 +435,78 @@
       });
     });
   </script>
+
+<style>
+  /* Styl modalny dla ofert */
+  #ofertaModalGrid {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+  }
+  #ofertaModalGrid.active {
+    display: flex;
+  }
+</style>
+
+<!-- Przycisk "Oferta" wywołuje modal -->
+<a href="#" id="ofertaBtn" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+  <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
+</a>
+
+<!-- Modal z kafelkami -->
+<div id="ofertaModalGrid">
+  <div class="bg-white rounded-2xl p-8 max-w-5xl w-full shadow-lg border-4 border-[#FBBE18] mx-4">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-3xl font-bold text-[#FBBE18]">Nasza Oferta</h2>
+      <button id="closeOfertaModal" class="text-gray-500 hover:text-gray-700">
+        <i data-feather="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gray-50 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-[#FBBE18] mb-2">Usługa 1</h3>
+        <p class="text-gray-700">Opis usługi 1</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-[#FBBE18] mb-2">Usługa 2</h3>
+        <p class="text-gray-700">Opis usługi 2</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-[#FBBE18] mb-2">Usługa 3</h3>
+        <p class="text-gray-700">Opis usługi 3</p>
+      </div>
+      <!-- Dodaj więcej w razie potrzeby -->
+    </div>
+  </div>
+</div>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const ofertaLink = document.querySelector('a[href="#oferta"]');
-    const ofertaSection = document.getElementById("oferta");
+    const ofertaBtn = document.getElementById("ofertaBtn");
+    const ofertaModalGrid = document.getElementById("ofertaModalGrid");
+    const closeOfertaModal = document.getElementById("closeOfertaModal");
 
-    ofertaLink.addEventListener("click", (e) => {
+    ofertaBtn.addEventListener("click", e => {
       e.preventDefault();
-      ofertaSection.scrollIntoView({ behavior: "smooth" });
+      ofertaModalGrid.classList.add("active");
+    });
 
-      setTimeout(() => {
-        const ofertaSlides = document.getElementById("oferta-slides");
-        ofertaSlides.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 800); // dostosuj czas do własnych potrzeb
+    closeOfertaModal.addEventListener("click", () => {
+      ofertaModalGrid.classList.remove("active");
+    });
+
+    ofertaModalGrid.addEventListener("click", e => {
+      if (e.target === ofertaModalGrid) {
+        ofertaModalGrid.classList.remove("active");
+      }
     });
   });
 </script>
 
-#oferta-slides {
-  scroll-margin-top: 120px;
-}
 
 </body>
 </html>
