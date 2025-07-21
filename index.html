@@ -435,5 +435,26 @@
       });
     });
   </script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const ofertaLink = document.querySelector('a[href="#oferta"]');
+    const ofertaSection = document.getElementById("oferta");
+
+    ofertaLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      ofertaSection.scrollIntoView({ behavior: "smooth" });
+
+      setTimeout(() => {
+        const ofertaSlides = document.getElementById("oferta-slides");
+        ofertaSlides.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 800); // dostosuj czas do własnych potrzeb
+    });
+  });
+</script>
+
+#oferta-slides {
+  scroll-margin-top: 120px;
+}
+
 </body>
 </html>
