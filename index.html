@@ -310,18 +310,6 @@
         <h4 class="font-semibold">One Step Chat</h4>
         <button id="chatClose" class="text-white text-xl leading-none hover:text-red-100">&times;</button>
       </div>
-  <!-- Dodajemy wybór tematu -->
-  <select id="topicSelect" class="w-full px-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#FBBE18]">
-    <option value="Temat1">Temat1</option>
-    <option value="Temat2">Temat2</option>
-    <option value="Temat3">Temat3</option>
-  </select>
-  <!-- dalej twój input i button -->
-  <div class="flex items-center gap-2">
-    <input type="text" id="chatInput" …>
-    <button type="submit">Wyślij</button>
-  </div>
-
       <div class="flex-1 p-4 space-y-2 text-sm overflow-y-auto h-60" id="chatMessages">
         <div class="bg-gray-100 p-2 rounded-xl self-start max-w-[70%]">
           Cześć!<br>Jak możemy Ci pomóc?
@@ -440,20 +428,6 @@
           overlay.classList.add('hidden');
         });
       }
-
-const topicSelect = document.getElementById('topicSelect');
-chatForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const topic = topicSelect.value;
-  const msg = chatInput.value.trim();
-  if (!msg) return;
-  const userBubble = document.createElement('div');
-  userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
-  userBubble.innerHTML = `<strong>${topic}:</strong> ${msg}`;
-  chatMessages.appendChild(userBubble);
-  // reszta kodu (czyszczenie input, dodanie odpowiedzi bota) bez zmian
-});
-
 
       // Chat logic
       const toggleBtn = document.getElementById('chatToggle');
