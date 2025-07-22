@@ -441,6 +441,20 @@
         });
       }
 
+const topicSelect = document.getElementById('topicSelect');
+chatForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const topic = topicSelect.value;
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+  const userBubble = document.createElement('div');
+  userBubble.className = 'bg-blue-100 p-2 rounded-xl self-end max-w-[70%] text-right ml-auto';
+  userBubble.innerHTML = `<strong>${topic}:</strong> ${msg}`;
+  chatMessages.appendChild(userBubble);
+  // reszta kodu (czyszczenie input, dodanie odpowiedzi bota) bez zmian
+});
+
+
       // Chat logic
       const toggleBtn = document.getElementById('chatToggle');
       const chatBox = document.getElementById('chatBox');
