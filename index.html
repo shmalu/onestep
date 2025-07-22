@@ -87,7 +87,7 @@
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- Header -->
+   <!-- Header -->
   <header class="bg-white shadow-md fixed w-full z-20" data-aos="fade-down">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3">
@@ -95,18 +95,21 @@
         <span class="text-2xl font-extrabold text-[#FBBE18] select-none">One Step</span>
       </div>
       <nav class="space-x-4 font-medium text-gray-700 flex items-center">
-       <a href="#" id="ofertaBtn" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-  <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
-</a>
+        <a href="#" id="ofertaBtn" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+          <i data-feather="package" class="w-4 h-4 mr-2"></i>Oferta
+        </a>
+        <a href="#audit" id="auditBtn" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+          <i data-feather="clipboard" class="w-4 h-4 mr-2"></i>Umów bezpłatny audyt
+        </a>
         <a href="#features" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
           <i data-feather="bar-chart-2" class="w-4 h-4 mr-2"></i>Dlaczego warto?
         </a>
         <a href="#opinions" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
           <i data-feather="users" class="w-4 h-4 mr-2"></i>Opinie
         </a>
-       <a href="kontakt.html" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
-  <i data-feather="phone-call" class="w-4 h-4 mr-2"></i>Kontakt
-</a>
+        <a href="kontakt.html" class="flex items-center bg-[#FBBE18] text-white px-4 py-2 rounded-xl shadow hover:bg-[#e0a917] transition">
+          <i data-feather="phone-call" class="w-4 h-4 mr-2"></i>Kontakt
+        </a>
       </nav>
     </div>
   </header>
@@ -196,6 +199,30 @@
           <p class="text-gray-700 leading-relaxed">
             Pomoc techniczna i doradztwo dostępne na każdym etapie współpracy.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Nasz Zespół -->
+  <section id="team" class="py-24 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6 text-center" data-aos="fade-up">
+      <h3 class="text-4xl font-bold mb-6 text-gray-900 tracking-tight">Nasz Zespół</h3>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition tilt-hover">
+          <img src="team1.jpg" alt="Członek zespołu" class="w-32 h-32 rounded-full mx-auto mb-4">
+          <h4 class="text-2xl font-semibold text-[#FBBE18]">Imię Nazwisko</h4>
+          <p class="text-gray-600">Stanowisko</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition tilt-hover">
+          <img src="team2.jpg" alt="Członek zespołu" class="w-32 h-32 rounded-full mx-auto mb-4">
+          <h4 class="text-2xl font-semibold text-[#FBBE18]">Imię Nazwisko</h4>
+          <p class="text-gray-600">Stanowisko</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition tilt-hover">
+          <img src="team3.jpg" alt="Członek zespołu" class="w-32 h-32 rounded-full mx-auto mb-4">
+          <h4 class="text-2xl font-semibold text-[#FBBE18]">Imię Nazwisko</h4>
+          <p class="text-gray-600">Stanowisko</p>
         </div>
       </div>
     </div>
@@ -502,6 +529,43 @@
   });
 </script>
 
+ <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      AOS.init({ duration: 800, once: true });
+      feather.replace();
+      // existing JS unchanged
+    });
+
+    // Oferta Modal Grid behavior
+    document.addEventListener("DOMContentLoaded", () => {
+      const ofertaBtn = document.getElementById("ofertaBtn");
+      const ofertaModalGrid = document.getElementById("ofertaModalGrid");
+      const closeOfertaModal = document.getElementById("closeOfertaModal");
+
+      ofertaBtn.addEventListener("click", e => {
+        e.preventDefault();
+        ofertaModalGrid.classList.add("active");
+      });
+
+      closeOfertaModal.addEventListener("click", () => {
+        ofertaModalGrid.classList.remove("active");
+      });
+
+      ofertaModalGrid.addEventListener("click", e => {
+        if (e.target === ofertaModalGrid) {
+          ofertaModalGrid.classList.remove("active");
+        }
+      });
+    });
+  </script>
+
+  <style>
+    /* Modal grid active class */
+    #ofertaModalGrid { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.5); z-index: 50; }
+    #ofertaModalGrid.active { display: flex; }
+  </style>
 
 </body>
 </html>
